@@ -1,16 +1,3 @@
-Alright, time to make the **root README** look like it belongs to a repo that knows where it’s going, not a junk drawer with commits.
-
-Below is an **updated, structured README** that:
-
-- Explains the purpose of the repo
-- Documents the **current folder structure**
-- Clearly states **what each folder is for**
-- Is future-proof for when more folders get added
-
-You can paste this directly into `README.md`.
-
----
-
 # web_dev_cohort26
 
 This repository documents my **6-month structured journey into full-stack web development** through the **Chai Code cohort**.
