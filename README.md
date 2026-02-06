@@ -25,8 +25,12 @@ web_dev_cohort26/
 │
 ├── building-blocks/
 │   └── assignments/
-│       └── html/
-│           └── resume.html
+│       ├── html/
+│       │   └── resume.html
+│       └── dev-tool-landing-page-cursor/
+│           ├── cursor.html
+│           ├── cursor.css
+│           ├── assets/
 │
 └── README.md
 ```
@@ -68,6 +72,26 @@ Holds assignment-based implementations mapped to specific topics.
     - Built using **only HTML**
     - No CSS or JavaScript
     - Uses semantic HTML tags to structure content correctly
+
+- `dev-tool-landing-page-cursor/`
+  - `cursor.html`
+    - **Assignment: Cursor Landing Page Clone**
+    - A complete clone of the [Cursor.com](https://cursor.com) website
+    - Built using **HTML5 and CSS3 only** (no JavaScript, no frameworks)
+    - Features:
+      - Fixed header with navigation dropdowns
+      - Hero section with IDE mockup demo
+      - Company logo garden (8 trusted brands)
+      - 3 feature sections with alternating layouts
+      - 6 testimonial cards
+      - "Stay on Frontier" section with model selector
+      - Changelog section with 4 recent updates
+      - Team/About section with "Join us" CTA
+      - Recent Highlights (blog posts) section
+      - Final CTA with download button
+      - Footer with 5-column links, theme switcher, language selector
+    - Uses Inter font from Google Fonts
+    - Dark theme with orange accent colors
 
 This section focuses on applying concepts practically rather than theoretical notes.
 
