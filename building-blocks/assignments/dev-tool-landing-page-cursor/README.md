@@ -28,7 +28,7 @@ This assignment involves creating a **pixel-perfect clone of the Cursor.com webs
 ## 🌐 Live Preview
 
 🔗 **Hosted Page:**
-👉 [https://rv-raghav.github.io/web_dev_cohort26/building-blocks/assignments/dev-tool-landing-page-cursor/cursor.html]
+👉 [https://web-dev-cohort26.vercel.app/building-blocks/assignments/dev-tool-landing-page-cursor/cursor.html]
 
 ---
 

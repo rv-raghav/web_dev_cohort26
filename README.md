@@ -27,10 +27,14 @@ web_dev_cohort26/
 │   └── assignments/
 │       ├── html/
 │       │   └── resume.html
-│       └── dev-tool-landing-page-cursor/
-│           ├── cursor.html
-│           ├── cursor.css
-│           ├── assets/
+│       ├── dev-tool-landing-page-cursor/
+│       │   ├── cursor.html
+│       │   ├── cursor.css
+│       │   └── assets/
+│       └── documentation-website-mintlify/
+│           ├── index.html
+│           ├── style.css
+│           └── assets/
 │
 └── README.md
 ```
@@ -93,7 +97,22 @@ Holds assignment-based implementations mapped to specific topics.
     - Uses Inter font from Google Fonts
     - Dark theme with orange accent colors
 
-This section focuses on applying concepts practically rather than theoretical notes.
+- `documentation-website-mintlify/`
+  - `index.html`
+    - **Assignment: Mintlify Documentation Website Clone**
+    - A complete clone of the [Mintlify.com](https://mintlify.com) website
+    - Built using **HTML5 and CSS3 only** (no JavaScript, no frameworks)
+    - Features:
+      - Fixed header with navigation dropdowns
+      - Hero section with email signup form
+      - Trusted By logos section (8 company logos)
+      - Feature Highlight section with AI-focused cards
+      - Enterprise section with customer story
+      - Customers Carousel with interactive cards
+      - Footer with multi-column links
+    - Uses Inter font from Google Fonts
+    - Theme-aware design with CSS custom properties
+    - Green accent color for brand identity
 
 ---
 
