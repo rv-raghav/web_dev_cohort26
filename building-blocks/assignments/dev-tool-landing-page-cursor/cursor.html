@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor</title>
+  <link rel="stylesheet" href="cursor.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png"
+    href="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Ficon-192x192.png&w=32&q=70&dpl=dpl_9xV9sRpkVGLBVMJ2hgL7e9o5mrhX">
+  <link rel="apple-touch-icon"
+    href="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Ficon-192x192.png&w=192&q=70&dpl=dpl_9xV9sRpkVGLBVMJ2hgL7e9o5mrhX">
+
+</head>
+
+<body>
+
+  <!-- ========== SITE HEADER ========== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a class="logo-link" href="/" aria-label="Homepage">
+        <svg fill="none" class="logo-svg" viewBox="0 0 2193 545" xmlns="http://www.w3.org/2000/svg">
+          <g fill="currentColor">
+            <path
+              d="m466.383 137.073-206.469-119.2034c-6.63-3.8287-14.811-3.8287-21.441 0l-206.4586 119.2034c-5.5734 3.218-9.0144 9.169-9.0144 15.615v240.375c0 6.436 3.441 12.397 9.0144 15.615l206.4686 119.203c6.63 3.829 14.811 3.829 21.441 0l206.468-119.203c5.574-3.218 9.015-9.17 9.015-15.615v-240.375c0-6.436-3.441-12.397-9.015-15.615zm-12.969 25.25-199.316 345.223c-1.347 2.326-4.904 1.376-4.904-1.319v-226.048c0-4.517-2.414-8.695-6.33-10.963l-195.7577-113.019c-2.3263-1.347-1.3764-4.905 1.3182-4.905h398.6305c5.661 0 9.199 6.136 6.368 11.041h-.009z">
+            </path>
+            <path
+              d="m723.253 148.84h87.856v48.397h-84.881c-45.789 0-81.527 26.432-81.527 82.273s35.738 82.273 81.527 82.273h84.881v48.397h-91.578c-76.691 0-131.039-45.043-131.039-130.66 0-85.618 58.07-130.661 134.761-130.661z">
+            </path>
+            <path
+              d="m855.781 148.84h54.348v159.7c0 39.828 18.242 58.448 61.056 58.448 42.815 0 61.055-18.61 61.055-58.448v-159.7h54.35v170.866c0 58.071-36.85 94.933-115.405 94.933-78.551 0-115.404-37.231-115.404-95.301z">
+            </path>
+            <path
+              d="m1370.62 222.913c0 29.04-16.75 51.372-39.09 61.056v.746c23.45 3.354 35.37 20.103 35.73 42.814l1.12 82.641h-54.35l-1.11-73.705c-.37-16.381-10.06-26.432-29.41-26.432h-90.47v100.137h-54.34v-261.33h150.02c49.15 0 81.9 24.94 81.9 74.083zm-54.73 7.454c0-22.333-11.91-34.623-34.24-34.623h-88.61v69.236h89.34c20.47 0 33.51-12.281 33.51-34.623z">
+            </path>
+            <path
+              d="m1576.09 333.85c0-18.61-11.91-26.432-29.77-27.915l-60.31-5.583c-52.12-4.837-79.3-25.318-79.3-74.83 0-49.511 33.51-76.69 81.53-76.69h133.27v46.904h-129.55c-18.61 0-30.52 9.683-30.52 28.294 0 18.61 12.28 27.547 30.9 29.04l61.42 5.214c46.54 4.091 77.06 25.318 77.06 75.198s-32.38 76.69-78.17 76.69h-139.23v-46.904h134.01c17.5 0 28.66-11.912 28.66-29.408z">
+            </path>
+            <path
+              d="m1789.79 144.373c81.89 0 133.65 52.487 133.65 134.761 0 82.273-53.98 135.506-135.88 135.506s-133.65-53.233-133.65-135.506c0-82.274 53.98-134.761 135.88-134.761zm77.43 135.129c0-55.095-32.02-87.479-78.56-87.479-46.53 0-78.55 32.384-78.55 87.479 0 55.094 32.02 87.478 78.55 87.478 46.54 0 78.56-32.384 78.56-87.478z">
+            </path>
+            <path
+              d="m2192.95 222.913c0 29.04-16.75 51.372-39.1 61.056v.746c23.46 3.354 35.37 20.103 35.74 42.814l1.12 82.641h-54.35l-1.12-73.705c-.36-16.381-10.05-26.432-29.4-26.432h-90.47v100.137h-54.35v-261.33h150.03c49.14 0 81.9 24.94 81.9 74.083zm-54.73 7.454c0-22.333-11.91-34.623-34.25-34.623h-88.6v69.236h89.34c20.47 0 33.51-12.281 33.51-34.623z">
+            </path>
+          </g>
+        </svg>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" href="/product">Product<span class="nav-caret">↓</span></a>
+            <div class="nav-dropdown">
+              <div class="nav-dropdown-menu">
+                <a class="nav-dropdown-link" href="/product">Agents</a>
+                <a class="nav-dropdown-link" href="/bugbot">Code Review</a>
+                <a class="nav-dropdown-link" href="/product/tab">Tab</a>
+                <a class="nav-dropdown-link" href="/cli">CLI</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/enterprise">Enterprise</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pricing">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/changelog">Resources<span class="nav-caret">↓</span></a>
+            <div class="nav-dropdown">
+              <div class="nav-dropdown-menu" style="min-width: 280px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                  <a class="nav-dropdown-link" href="/changelog">Changelog</a>
+                  <a class="nav-dropdown-link" href="/blog">Blog</a>
+                  <a class="nav-dropdown-link" href="/docs" target="_blank">Docs</a>
+                  <a class="nav-dropdown-link" href="/community">Community</a>
+                  <a class="nav-dropdown-link" href="https://cursor.com/learn" target="_blank">Learn<span
+                      class="external-icon">&nbsp;↗</span></a>
+                  <a class="nav-dropdown-link" href="/workshops">Workshops</a>
+                  <a class="nav-dropdown-link" href="https://forum.cursor.com/" target="_blank">Forum<span
+                      class="external-icon">&nbsp;↗</span></a>
+                  <a class="nav-dropdown-link" href="/careers">Careers</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="https://cursor.com/dashboard" target="_blank" class="btn btn-ghost btn-sm">Sign in</a>
+        <a href="/download" class="btn btn-primary btn-sm">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Built to make you extraordinarily productive, Cursor is the best way to code with AI.</h1>
+        <a href="https://api2.cursor.sh/updates/download/golden/win32-x64-user/cursor/2.4" class="btn btn-primary">
+          Download for Windows
+          <span class="btn-icon">⤓</span>
+        </a>
+      </div>
+
+      <!-- Main Demo -->
+      <div class="media-border-container">
+        <div class="demo-container">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-cc24ca462279ca23250c.jpg"
+            alt="" class="demo-bg-image">
+
+          <div class="demo-window">
+            <div class="window-titlebar">
+              <div class="window-dots">
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+              </div>
+              <span class="window-title">Cursor</span>
+              <div></div>
+            </div>
+
+            <div class="window-content">
+              <!-- Sidebar -->
+              <div class="sidebar">
+                <div class="sidebar-header">Ready for Review <span>6</span></div>
+
+                <div class="sidebar-item active">
+                  <div class="sidebar-icon"></div>
+                  <div class="sidebar-item-content">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="sidebar-item-title">Build Landing Page</div>
+                      <div class="sidebar-item-time">1h</div>
+                    </div>
+                    <div class="sidebar-item-meta">
+                      <span class="text-green">+70</span>
+                      <span>· Done. Fonts preload in the head, critical CSS is inlined, and I added a color-scheme meta
+                        tag so dark mode renders insta</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar-item">
+                  <div class="sidebar-icon"></div>
+                  <div class="sidebar-item-content">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="sidebar-item-title">Analyze Tab vs Agent Usage Patterns</div>
+                      <div class="sidebar-item-time">2h</div>
+                    </div>
+                    <div class="sidebar-item-meta">
+                      <span class="text-green">+220</span>
+                      <span class="text-red">-80</span>
+                      <span>· All set! We now track focus share, switching rates, and rolling engagement so PMs can
+                        compare tab-first and agent-first</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar-item">
+                  <div class="sidebar-icon"></div>
+                  <div class="sidebar-item-content">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="sidebar-item-title">PyTorch MNIST Experiments</div>
+                      <div class="sidebar-item-time">3h</div>
+                    </div>
+                    <div class="sidebar-item-meta">
+                      <span>Done, configurable MNIST experiment framework with AMP and reports.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar-item">
+                  <div class="sidebar-icon"></div>
+                  <div class="sidebar-item-content">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="sidebar-item-title">Bioinformatics Tools</div>
+                      <div class="sidebar-item-time">4h</div>
+                    </div>
+                    <div class="sidebar-item-meta">
+                      <span class="text-green">+135</span>
+                      <span class="text-red">-21</span>
+                      <span>· Great! I've added Gotoh's algorithm with proper affine gap penalties</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar-item">
+                  <div class="sidebar-icon"></div>
+                  <div class="sidebar-item-content">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="sidebar-item-title">Set up Cursor Rules for Dashboard</div>
+                      <div class="sidebar-item-time">5h</div>
+                    </div>
+                    <div class="sidebar-item-meta">
+                      <span>Perfect! I've created a comprehensive Cursor Rules file for your dashboard</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sidebar-item">
+                  <div class="sidebar-icon"></div>
+                  <div class="sidebar-item-content">
+                    <div style="display:flex; justify-content:space-between;">
+                      <div class="sidebar-item-title">Plan Mission Control</div>
+                      <div class="sidebar-item-time">6h</div>
+                    </div>
+                    <div class="sidebar-item-meta">
+                      <span class="text-green">+68</span>
+                      <span>· Drafted implementation steps in feature-prd.md. A few quick questions before I start
+                        building:</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Main Area -->
+              <div class="main-area">
+                <!-- Browser Preview -->
+                <div class="browser-preview">
+                  <div class="preview-header">Acme Labs</div>
+                  <div class="preview-text">
+                    <p>Software creation is changing. We are a group of researchers, engineers, and technologists
+                      inventing at the edge of what's useful and possible.</p>
+                    <p>We have much to learn, try, and build.</p>
+                    <div class="preview-buttons">
+                      <button class="preview-btn">See projects</button>
+                      <a href="#" class="preview-link">Join our team →</a>
+                    </div>
+                    <table class="preview-table">
+                      <tr>
+                        <td class="year">2026</td>
+                        <td>Secure codebase indexing</td>
+                        <td>Published</td>
+                      </tr>
+                      <tr>
+                        <td class="year">2026</td>
+                        <td>Semantic search</td>
+                        <td>Published</td>
+                      </tr>
+                      <tr>
+                        <td class="year">2025</td>
+                        <td>Reinforcement learning</td>
+                        <td>Published</td>
+                      </tr>
+                      <tr>
+                        <td class="year">2024</td>
+                        <td>Shadow workspaces</td>
+                        <td>Published</td>
+                      </tr>
+                      <tr>
+                        <td class="year">2024</td>
+                        <td>Multi-agent collaboration</td>
+                        <td>Published</td>
+                      </tr>
+                      <tr>
+                        <td class="year">2023</td>
+                        <td>Context-aware completions</td>
+                        <td>Published</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Chat Panel -->
+                <div class="chat-panel">
+                  <div class="chat-header">Build Landing Page</div>
+                  <div class="chat-body">
+                    <div class="chat-prompt">make a landing page based on attached docs explaining what we do</div>
+                    <div class="chat-step">Read about-acme.md</div>
+                    <div class="chat-step">Read brand-guidelines.pdf</div>
+                    <div class="chat-step">Thought 6s</div>
+                    <div class="chat-message">I'll create a minimal, serif-based landing page that matches your brand
+                      voice.</div>
+                    <div class="chat-file">
+                      <span>📄</span>
+                      <span>app/page.tsx</span>
+                      <span class="text-green">+52</span>
+                    </div>
+                    <div class="chat-file">
+                      <span>📄</span>
+                      <span>app/globals.css</span>
+                      <span class="text-green">+18</span>
+                    </div>
+                    <div class="chat-message">Done. Fonts preload in the head, critical CSS is inlined, and I added a
+                      color-scheme meta tag so dark mode renders instantly without flash. 280ms first paint.</div>
+                  </div>
+                  <div class="chat-input-area">
+                    <input type="text" class="chat-input" placeholder="Plan, search, build anything...">
+                    <div class="chat-controls">
+                      <div class="mode-pill">
+                        <span>∞</span>
+                        <span>Agent</span>
+                        <span>▾</span>
+                      </div>
+                      <button class="send-btn">↑</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LOGO GARDEN ========== -->
+  <section class="logo-garden">
+    <div class="container">
+      <h2>Trusted every day by teams that build world-class software</h2>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-beae7a1f5d7eb381a872.svg"
+            alt="Stripe">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-53062f7690ae5b0cdbed.svg"
+            alt="OpenAI">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-eb9e0a5931092d4db1dd.svg"
+            alt="Linear">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-da55192921531e5fd2ba.svg"
+            alt="Datadog">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-e3678011b17782740f98.svg"
+            alt="NVIDIA">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-105275382af564c3ab7c.svg"
+            alt="Figma">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-cf60827b1c3f341d19ef.svg"
+            alt="Ramp">
+        </div>
+        <div class="logo-card">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-37d2d1a1edcce15ca38c.svg"
+            alt="Adobe">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURE 1: AGENTS ========== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-card">
+        <div class="feature-text">
+          <h3>Agents turn ideas into code</h3>
+          <p>Accelerate development by handing off tasks to Cursor, while you focus on making decisions.</p>
+          <a href="/product" class="btn-tertiary">Learn about agentic development →</a>
+        </div>
+        <div class="feature-media" style="background: #4A443B;">
+          <img src="assets/features.png" alt="" class="feature-bg">
+          <!-- Agent Demo Window would go here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURE 2: TAB ========== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-card reverse">
+        <div class="feature-text">
+          <h3>Magically accurate autocomplete</h3>
+          <p>Our specialized Tab model predicts your next action with striking speed and precision.</p>
+          <a href="/product/tab" class="btn-tertiary">Learn about Tab →</a>
+        </div>
+        <div class="feature-media">
+          <img src="assets/features-2.png" alt="" class="feature-bg">
+          <!-- Tab Demo Window would go here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURE 3: EVERYWHERE ========== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-card">
+        <div class="feature-text">
+          <h3>In every tool, at every step</h3>
+          <p>Cursor reviews your PRs in GitHub, collaborates in Slack, and runs in your terminal.</p>
+          <a href="/product" class="btn-tertiary">Learn about Cursor's surfaces →</a>
+        </div>
+        <div class="feature-media" style="background: #1a1614; padding: 32px; position: relative; display: block;">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-85923e7fafe00c9c0d1f.jpg"
+            alt="" class="feature-bg" style="opacity:0.5;">
+
+          <!-- Slack Window -->
+          <div class="slack-window" style="position: relative; margin-bottom: 24px; z-index: 10;">
+            <div class="window-titlebar">
+              <div class="window-dots">
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+              </div>
+              <span class="window-title">Slack</span>
+              <div></div>
+            </div>
+            <div class="slack-header">
+              <div class="slack-channel">#feature-realtime-sync</div>
+              <div class="slack-members">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Fswhitmore.png&w=48&q=70"
+                  alt="">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Feric.jpeg&w=48&q=70"
+                  alt="">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Frikki.jpg&w=48&q=70"
+                  alt="">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Fryo.png&w=48&q=70"
+                  alt="">
+              </div>
+            </div>
+            <div class="slack-messages">
+              <div class="slack-msg">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Fswhitmore.png&w=64&q=70"
+                  alt="" class="slack-msg-avatar">
+                <div class="slack-msg-content">
+                  <div class="slack-msg-header">
+                    <span class="slack-msg-name">swhitmore</span>
+                    <span class="slack-msg-time">5m</span>
+                  </div>
+                  <div class="slack-msg-text">i wanna be able to go to cursor.com/changelog#1.0 to see 1.0 changelog
+                  </div>
+                </div>
+              </div>
+              <div class="slack-msg">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Feric.jpeg&w=64&q=70"
+                  alt="" class="slack-msg-avatar">
+                <div class="slack-msg-content">
+                  <div class="slack-msg-header">
+                    <span class="slack-msg-name">eric</span>
+                    <span class="slack-msg-time">4m</span>
+                  </div>
+                  <div class="slack-msg-text">checks out</div>
+                  <div class="slack-msg-text"><strong>@cursor</strong> can you take a stab?</div>
+                </div>
+              </div>
+              <div class="slack-msg">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Ficon-192x192.png&w=64&q=70"
+                  alt="" class="slack-msg-avatar">
+                <div class="slack-msg-content">
+                  <div class="slack-msg-header">
+                    <span class="slack-msg-name">Cursor</span>
+                    <span class="app-badge">APP</span>
+                    <span class="slack-msg-time">2m</span>
+                  </div>
+                  <div class="slack-msg-text">I added direct linking for changelog entries and updated the Node.js
+                    version constraints across the project for better maintainability.</div>
+                  <div class="slack-msg-buttons">
+                    <button class="slack-btn primary">View PR</button>
+                    <button class="slack-btn">Open in Cursor</button>
+                    <button class="slack-btn">Open in Web</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GitHub PR Window -->
+          <div class="github-window" style="position: relative; z-index: 10;">
+            <div class="window-titlebar">
+              <div class="window-dots">
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+              </div>
+              <span class="window-title">GitHub Pull Request</span>
+              <div></div>
+            </div>
+            <div class="github-comment">
+              <div style="display:flex; gap: 12px; margin-bottom: 16px;">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Fusers%2Fleerob.png&w=64&q=70"
+                  alt="" style="width:32px;height:32px;border-radius:50%;">
+                <div class="github-comment-bubble" style="flex:1;">
+                  <div class="github-comment-header">
+                    <strong>leerob</strong> <span style="color:var(--text-ter)">5m ago</span>
+                  </div>
+                  <div class="github-comment-body">
+                    <strong>@cursor</strong> can you review this PR?
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap: 12px;">
+                <img
+                  src="https://cursor.com/marketing-static/_next/image?url=%2Fmarketing-static%2Ficon-192x192.png&w=64&q=70"
+                  alt="" style="width:32px;height:32px;border-radius:6px;">
+                <div class="github-comment-bubble" style="flex:1;">
+                  <div class="github-comment-header">
+                    <strong>cursor</strong> <span class="app-badge">bot</span> <span
+                      style="color:var(--text-ter)">reviewed 3m ago</span>
+                  </div>
+                  <div class="github-comment-body">
+                    <div class="github-diff">
+                      <div class="github-diff-header">
+                        src/vs/workbench/composer/browser/components/ComposerUnifiedDropdown.tsx</div>
+                      <div class="github-diff-line removed">
+                        <span class="num">3292</span>
+                        <span class="sign">-</span>
+                        <span class="code">{selectedMode().keybinding}</span>
+                      </div>
+                      <div class="github-diff-line added">
+                        <span class="num">3293</span>
+                        <span class="sign">+</span>
+                        <span class="code">{composerOpenModeToggleKeybinding()}</span>
+                      </div>
+                    </div>
+                    <p style="margin-top:12px;"><strong>Bug: Function Returns Object Instead of String (Logic
+                        bug)</strong></p>
+                    <p style="margin-top:4px;">The <code
+                        style="background:var(--bg-card-03);padding:2px 4px;border-radius:4px;">composerOpenModeToggleKeybinding</code>
+                      is a function that needs to be called to get its value. This makes the condition always truthy.
+                    </p>
+                    <div class="github-buttons">
+                      <button class="github-btn">⬡ Fix in Cursor</button>
+                      <button class="github-btn">Fix in Web</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>The new way to build software.</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"It was night and day from one batch to another, adoption went from single digits
+            to over 80%. It just spread like wildfire, all the best builders were using Cursor."</p>
+          <div class="testimonial-author">
+            <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/avatars/diana-hu-avatar.png"
+              alt="Diana Hu" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Diana Hu</div>
+              <div class="testimonial-role">General Partner, Y Combinator</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"My favorite enterprise AI service is Cursor. Every one of our engineers, some
+            40,000, are now assisted by AI and our productivity has gone up incredibly."</p>
+          <div class="testimonial-author">
+            <img
+              src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-b7d40eac35d910f3448b.png"
+              alt="Jensen Huang" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Jensen Huang</div>
+              <div class="testimonial-role">President & CEO, NVIDIA</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"The best LLM applications have an autonomy slider: you control how much
+            independence to give the AI. In Cursor, you can do Tab completion, Cmd+K for targeted edits, or you can let
+            it rip with the full autonomy agentic version."</p>
+          <div class="testimonial-author">
+            <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/avatars/andrej-karpathy-avatar.png"
+              alt="Andrej Karpathy" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Andrej Karpathy</div>
+              <div class="testimonial-role">CEO, Eureka Labs</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe
+            employees. We spend more on R&D and software creation than any other undertaking, and there's significant
+            economic outcomes when making that process more efficient."</p>
+          <div class="testimonial-author">
+            <img
+              src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/avatars/patrick-collison-avatar.png"
+              alt="Patrick Collison" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Patrick Collison</div>
+              <div class="testimonial-role">Co‑Founder & CEO, Stripe</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"The most useful AI tool that I currently pay for, hands down, is Cursor. It's
+            fast, autocompletes when and where you need it to, handles brackets properly, sensible keyboard shortcuts,
+            bring-your-own-model... everything is well put together."</p>
+          <div class="testimonial-author">
+            <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/avatars/shadcn-avatar.png"
+              alt="shadcn" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">shadcn</div>
+              <div class="testimonial-role">Creator of shadcn/ui</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"It's definitely becoming more fun to be a programmer. We are at the 1% of what's
+            possible, and it's in interactive experiences like Cursor where models like GPT-5 shine brightest."</p>
+          <div class="testimonial-author">
+            <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/avatars/greg-brockman-avatar.jpg"
+              alt="Greg Brockman" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Greg Brockman</div>
+              <div class="testimonial-role">President, OpenAI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STAY ON FRONTIER ========== -->
+  <section class="frontier">
+    <div class="container">
+      <h2>Stay on the frontier</h2>
+      <div class="frontier-grid">
+        <div class="frontier-card">
+          <h3>Use the best model for every task</h3>
+          <p>Choose between every cutting-edge model from OpenAI, Anthropic, Gemini, xAI, and Cursor.</p>
+          <a href="/docs/models" class="btn-tertiary">Explore models ↗</a>
+          <figure>
+            <div class="model-selector">
+              <div class="model-input">
+                <div class="model-placeholder">Ask Cursor to plan or build anything</div>
+                <div style="display:flex; gap:8px; margin-top:8px;">
+                  <div class="mode-pill">∞ Agent ▾</div>
+                  <div style="font-size:12px;color:var(--text-sec);">Auto ▾</div>
+                </div>
+              </div>
+              <div class="model-menu">
+                <div class="model-item active">
+                  <span class="label"><span>Auto</span><span class="suggested">Suggested</span></span>
+                  <span>✓</span>
+                </div>
+                <div class="model-item"><span>Composer 1</span></div>
+                <div class="model-item"><span>GPT-5.2</span></div>
+                <div class="model-item"><span>Opus 4.6</span></div>
+                <div class="model-item"><span>Gemini 3 Pro</span></div>
+                <div class="model-item"><span>Grok Code</span></div>
+              </div>
+            </div>
+          </figure>
+        </div>
+        <div class="frontier-card">
+          <h3>Complete codebase understanding</h3>
+          <p>Cursor learns how your codebase works, no matter the scale or complexity.</p>
+          <a href="/docs/context/semantic-search" class="btn-tertiary">Learn about codebase indexing ↗</a>
+          <figure>
+            <img src="assets/frontier.png" alt="Codebase indexing" style="width:100%;height:100%;object-fit:cover;">
+          </figure>
+        </div>
+        <div class="frontier-card">
+          <h3>Develop enduring software</h3>
+          <p>Trusted by over half of the Fortune 500 to accelerate development teams in their most complex software.</p>
+          <a href="/enterprise" class="btn-tertiary">Explore enterprise ↗</a>
+          <figure>
+            <img src="assets/homepage-team-photo-1.webp" alt="Enterprise"
+              style="width:100%;height:100%;object-fit:cover;">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CHANGELOG SECTION ========== -->
+  <section class="changelog">
+    <div class="container">
+      <h2>Changelog</h2>
+      <div class="changelog-grid">
+        <article class="changelog-card">
+          <a href="/changelog/2-4">
+            <div class="changelog-meta">
+              <span class="changelog-version">2.4</span>
+              <time datetime="2026-01-22">Jan 22, 2026</time>
+            </div>
+            <p class="changelog-title">Subagents, Skills, and Image Generation</p>
+          </a>
+        </article>
+        <article class="changelog-card">
+          <a href="/changelog/cli-jan-16-2026">
+            <div class="changelog-meta">
+              <time datetime="2026-01-16">Jan 16, 2026</time>
+            </div>
+            <p class="changelog-title">CLI Agent Modes and Cloud Handoff</p>
+          </a>
+        </article>
+        <article class="changelog-card">
+          <a href="/changelog/cli-jan-08-2026">
+            <div class="changelog-meta">
+              <time datetime="2026-01-08">Jan 8, 2026</time>
+            </div>
+            <p class="changelog-title">New CLI Features and Improved CLI Performance</p>
+          </a>
+        </article>
+        <article class="changelog-card">
+          <a href="/changelog/2-3">
+            <div class="changelog-meta">
+              <span class="changelog-version">2.3</span>
+              <time datetime="2025-12-22">Dec 22, 2025</time>
+            </div>
+            <p class="changelog-title">Layout Customization and Stability Improvements</p>
+          </a>
+        </article>
+      </div>
+      <a href="/changelog" class="changelog-link">See what's new in Cursor →</a>
+    </div>
+  </section>
+
+  <!-- ========== TEAM/ABOUT SECTION ========== -->
+  <section class="team-section">
+    <div class="container">
+      <div class="team-card">
+        <div class="team-content">
+          <h3>Cursor is an applied research team focused on building the future of software development.</h3>
+          <a href="/careers" class="team-link">Join us <span>→</span></a>
+        </div>
+        <div class="team-image">
+          <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/homepage/homepage-team-photo.jpg"
+            alt="Cursor Team">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RECENT HIGHLIGHTS SECTION ========== -->
+  <section class="highlights">
+    <div class="container">
+      <div class="highlights-grid">
+        <h2>Recent highlights</h2>
+        <div class="highlights-list">
+          <a class="highlight-card" href="/blog/self-driving-codebases">
+            <p class="highlight-title">Towards self-driving codebases</p>
+            <p class="highlight-desc">We're making a part of our multi-agent research harness available to try today in
+              preview.</p>
+            <div class="highlight-meta">
+              <span>Research · </span>
+              <time datetime="2026-02-05">Feb 5, 2026</time>
+            </div>
+          </a>
+          <a class="highlight-card" href="/blog/salesforce">
+            <p class="highlight-title">Salesforce ships higher-quality code across 20,000 developers with Cursor</p>
+            <p class="highlight-desc">Over 90% of developers at Salesforce now use Cursor, driving double-digit
+              improvements in cycle time, PR velocity, and code quality.</p>
+            <div class="highlight-meta">
+              <span>Customers · </span>
+              <time datetime="2026-01-21">Jan 21, 2026</time>
+            </div>
+          </a>
+          <a class="highlight-card" href="/blog/agent-best-practices">
+            <p class="highlight-title">Best practices for coding with agents</p>
+            <p class="highlight-desc">A comprehensive guide to working with coding agents, from starting with plans to
+              managing context, customizing workflows, and reviewing code.</p>
+            <div class="highlight-meta">
+              <span>Product · </span>
+              <time datetime="2026-01-09">Jan 9, 2026</time>
+            </div>
+          </a>
+          <a href="/blog" class="highlights-link">View more posts →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FINAL CTA SECTION ========== -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Try Cursor now.</h2>
+      <a href="https://api2.cursor.sh/updates/download/golden/win32-x64-user/cursor/2.4" class="btn btn-primary">
+        Download for Windows
+        <span class="btn-icon">⤓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-heading">Product</h3>
+          <ul class="footer-links">
+            <li><a href="/product">Agents</a></li>
+            <li><a href="/enterprise">Enterprise</a></li>
+            <li><a href="/bugbot">Code Review</a></li>
+            <li><a href="/product/tab">Tab</a></li>
+            <li><a href="/cli">CLI</a></li>
+            <li><a href="/agents">Cloud Agents</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/download">Download</a></li>
+            <li><a href="/changelog">Changelog</a></li>
+            <li><a href="/docs">Docs</a></li>
+            <li><a href="https://forum.cursor.com/" target="_blank" class="external-link">Forum<span
+                  class="external-icon">&nbsp;↗</span></a></li>
+            <li><a href="https://status.cursor.com/" target="_blank" class="external-link">Status<span
+                  class="external-icon">&nbsp;↗</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li><a href="/careers">Careers</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/community">Community</a></li>
+            <li><a href="/students">Students</a></li>
+            <li><a href="/brand">Brand</a></li>
+            <li><a href="https://anysphere.inc/" target="_blank" class="external-link">Anysphere<span
+                  class="external-icon">&nbsp;↗</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Legal</h3>
+          <ul class="footer-links">
+            <li><a href="/terms-of-service">Terms of Service</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/data-use">Data Use</a></li>
+            <li><a href="/security">Security</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            <li><a href="https://x.com/cursor_ai" target="_blank" class="external-link">X<span
+                  class="external-icon">&nbsp;↗</span></a></li>
+            <li><a href="https://www.linkedin.com/company/cursorai" target="_blank" class="external-link">LinkedIn<span
+                  class="external-icon">&nbsp;↗</span></a></li>
+            <li><a href="https://www.youtube.com/@cursor_ai" target="_blank" class="external-link">YouTube<span
+                  class="external-icon">&nbsp;↗</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <span>© 2026 <a href="https://anysphere.inc">Anysphere, Inc.</a></span>
+          <span>🛡 <a href="/security">SOC 2 Certified</a></span>
+        </div>
+        <div class="footer-bottom-right">
+          <div class="theme-switcher">
+            <button class="theme-btn active" aria-label="System theme">🖥</button>
+            <button class="theme-btn" aria-label="Light theme">☉</button>
+            <button class="theme-btn" aria-label="Dark theme">☾</button>
+          </div>
+          <button class="lang-selector">
+            <span>🌐</span>
+            <span>English</span>
+            <span>↓</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
