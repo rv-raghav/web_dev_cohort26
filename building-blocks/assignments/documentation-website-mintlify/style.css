@@ -7,7 +7,7 @@
 
 body {
   background-image: url("https://www.mintlify.com/hero/bg-light.svg");
-  background-size: inherit;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
@@ -552,29 +552,37 @@ body {
 .logo-item.order-1 {
   order: 1;
 }
+
 .logo-item.order-2 {
   order: 2;
 }
+
 .logo-item.order-3 {
   order: 3;
 }
+
 .logo-item.order-4 {
   order: 4;
 }
+
 .logo-item.order-5 {
   order: 5;
 }
+
 .logo-item.order-6 {
   order: 6;
 }
+
 .logo-item.order-7 {
   order: 7;
 }
+
 .logo-item.order-8 {
   order: 8;
 }
 
 @media (min-width: 768px) {
+
   .logo-item.order-1,
   .logo-item.order-2,
   .logo-item.order-3,
@@ -592,24 +600,31 @@ body {
   .logo-item .logo-svg-anthropic {
     max-height: 10px;
   }
+
   .logo-item .logo-svg-coinbase {
     max-height: 14px;
   }
+
   .logo-item .logo-svg-microsoft {
     max-height: 18px;
   }
+
   .logo-item .logo-svg-perplexity {
     max-height: 23px;
   }
+
   .logo-item .logo-svg-hubspot {
     max-height: 19px;
   }
+
   .logo-item .logo-svg-x {
     max-height: 20px;
   }
+
   .logo-item .logo-svg-paypal {
     max-height: 19px;
   }
+
   .logo-item .logo-svg-lovable {
     max-height: 17px;
   }
@@ -903,11 +918,9 @@ body {
   align-items: center;
   justify-content: center;
   padding: 48px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.02) 100%
-  );
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.02) 100%);
 }
 
 .assistant-chat-preview {
@@ -961,6 +974,7 @@ body {
 }
 
 @keyframes typing {
+
   0%,
   60%,
   100% {
@@ -1019,6 +1033,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
   .enterprise-title,
   .enterprise-subtitle,
   .feature-tag {
@@ -1126,8 +1141,7 @@ body {
 .customer-story-bg {
   position: absolute;
   inset: 0;
-  background: url("https://www.mintlify.com/enterprise/anthropic.svg") center
-    center / cover no-repeat;
+  background: url("https://www.mintlify.com/enterprise/anthropic.svg") center center / cover no-repeat;
   background-color: #1a1a2e;
   transform: scale(1.15);
 }
@@ -1482,12 +1496,10 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    to top,
-    transparent 0%,
-    #f8faf9 50%,
-    #e8f5f0 100%
-  );
+  background: linear-gradient(to top,
+      transparent 0%,
+      #f8faf9 50%,
+      #e8f5f0 100%);
   transform: rotate(180deg);
   pointer-events: none;
 }
@@ -1805,7 +1817,7 @@ body {
   }
 }
 
-.footer-security > p {
+.footer-security>p {
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: capitalize;
