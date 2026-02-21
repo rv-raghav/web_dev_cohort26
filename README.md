@@ -36,6 +36,16 @@ web_dev_cohort26/
 │           ├── style.css
 │           └── assets/
 │
+├── interacting-with-browser/
+│   └── javascript/
+│       ├── 01-basics/              # Console, variables, data types
+│       ├── 02-data-types-deep-dive/ # Numbers, strings, type conversion
+│       ├── 03-operators-and-control-flow/ # Operators, conditionals, loops
+│       ├── 04-arrays/              # Array basics & higher-order methods
+│       ├── 05-objects/             # Object literals & object methods
+│       ├── 06-functions/           # Functions, this, spread/rest, call/bind/apply, new, prototypes
+│       └── README.md
+│
 └── README.md
 ```
 
@@ -113,6 +123,21 @@ Holds assignment-based implementations mapped to specific topics.
     - Uses Inter font from Google Fonts
     - Theme-aware design with CSS custom properties
     - Green accent color for brand identity
+
+### `interacting-with-browser/javascript/`
+
+Organized **JavaScript fundamentals** notes and examples from the cohort, structured into topic-based folders.
+
+| Folder | Topics |
+| ------ | ------ |
+| `01-basics/` | Console methods, variables (`var`/`let`/`const`), data types, typeof, copy behavior |
+| `02-data-types-deep-dive/` | Numbers & Math, string methods, type conversion & coercion |
+| `03-operators-and-control-flow/` | Operators, conditionals (`if`/`switch`/ternary), loops (`for`/`while`/`for-of`/`for-in`) |
+| `04-arrays/` | Array creation & CRUD, higher-order methods (`map`, `filter`, `reduce`, `sort`, etc.) |
+| `05-objects/` | Object literals, property access, `Object.keys`/`values`/`entries`, `freeze`/`seal` |
+| `06-functions/` | Declarations, arrow functions, `this`, closures, IIFE, spread/rest, `call`/`apply`/`bind`, `new`, prototypes |
+
+All original course examples are preserved; additional examples are marked with 🆕.
 
 ---
 
