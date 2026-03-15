@@ -18,6 +18,8 @@ web_dev_cohort26/
 │   │   └── README.md
 │   ├── networking/
 │   │   └── README.md
+│   ├── js/
+│   │   └── README.md
 │   ├── html/
 │   │   └── README.md
 │   └── css/
@@ -67,6 +69,7 @@ Each subfolder represents a topic and includes a `README.md` with:
 
 - `git-github/` – Version control concepts and workflows
 - `networking/` – Internet, DNS, HTTP, and client-server fundamentals
+- `js/` – JavaScript fundamentals, arrays, functions, objects, and OOP concepts
 - `html/` – HTML structure, semantics, and best practices
 - `css/` – Styling fundamentals and layout concepts
 
