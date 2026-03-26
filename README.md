@@ -19,6 +19,9 @@ web_dev_cohort26/
 │       └── index.html
 │
 ├── 01-tools/
+|    └── git_github/
+|          ├── git.md
+|          └── git.tldr
 ├── 02-fundamentals/
 │
 ├── 03-building-blocks/
