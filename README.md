@@ -13,6 +13,58 @@ This repository is designed to grow progressively as concepts are learned and ap
 ```
 web_dev_cohort26/
 │
+├── 00-t_classes/
+│   └── dom/
+│       ├── dom_in_js.tldr
+│       └── index.html
+│
+├── 01-tools/
+├── 02-fundamentals/
+│
+├── 03-building-blocks/
+│   └── assignments/
+│       ├── html/
+│       │   ├── assignments.md
+│       │   ├── resume.html
+│       │   └── assets/
+│       ├── dev-tool-landing-page-cursor/
+│       │   ├── cursor.html
+│       │   ├── cursor.css
+│       │   ├── README.md
+│       │   ├── assets/
+│       │   └── final-work/
+│       └── documentation-website-mintlify/
+│           ├── index.html
+│           ├── style.css
+│           ├── README.md
+│           ├── assets/
+│           └── final-work/
+│
+├── 04-interacting-with-browser/
+│   ├── in-depth-js/
+│   │   ├── execution-context.tldr
+│   │   ├── hoisting.html
+│   │   ├── structure.md
+│   │   └── js-syllabus/
+│   └── javascript-classroom/
+│       ├── 01-basics/
+│       ├── 02-data-types-deep-dive/
+│       ├── 03-operators-and-control-flow/
+│       ├── 04-arrays/
+│       ├── 05-objects/
+│       ├── 06-functions/
+│       ├── 07-classes/
+│       ├── 08-symbols/
+│       ├── 09-error-handling/
+│       ├── 10-async-js/
+│       └── README.md
+│
+├── 05-backend-engineering/
+│   ├── express/
+│   └── node/
+│
+├── 06-typescript/
+│
 ├── blogs/
 │   ├── git-github/
 │   │   └── README.md
@@ -23,29 +75,6 @@ web_dev_cohort26/
 │   ├── html/
 │   │   └── README.md
 │   └── css/
-│       └── README.md
-│
-├── building-blocks/
-│   └── assignments/
-│       ├── html/
-│       │   └── resume.html
-│       ├── dev-tool-landing-page-cursor/
-│       │   ├── cursor.html
-│       │   ├── cursor.css
-│       │   └── assets/
-│       └── documentation-website-mintlify/
-│           ├── index.html
-│           ├── style.css
-│           └── assets/
-│
-├── interacting-with-browser/
-│   └── javascript/
-│       ├── 01-basics/              # Console, variables, data types
-│       ├── 02-data-types-deep-dive/ # Numbers, strings, type conversion
-│       ├── 03-operators-and-control-flow/ # Operators, conditionals, loops
-│       ├── 04-arrays/              # Array basics & higher-order methods
-│       ├── 05-objects/             # Object literals & object methods
-│       ├── 06-functions/           # Functions, this, spread/rest, call/bind/apply, new, prototypes
 │       └── README.md
 │
 └── README.md
@@ -75,11 +104,11 @@ Each subfolder represents a topic and includes a `README.md` with:
 
 ---
 
-### `building-blocks/`
+### `03-building-blocks/`
 
 This folder contains **hands-on practice and assignments** related to foundational web technologies.
 
-#### `building-blocks/assignments/`
+#### `03-building-blocks/assignments/`
 
 Holds assignment-based implementations mapped to specific topics.
 
@@ -127,18 +156,18 @@ Holds assignment-based implementations mapped to specific topics.
     - Theme-aware design with CSS custom properties
     - Green accent color for brand identity
 
-### `interacting-with-browser/javascript/`
+### `04-interacting-with-browser/javascript-classroom/`
 
 Organized **JavaScript fundamentals** notes and examples from the cohort, structured into topic-based folders.
 
-| Folder | Topics |
-| ------ | ------ |
-| `01-basics/` | Console methods, variables (`var`/`let`/`const`), data types, typeof, copy behavior |
-| `02-data-types-deep-dive/` | Numbers & Math, string methods, type conversion & coercion |
-| `03-operators-and-control-flow/` | Operators, conditionals (`if`/`switch`/ternary), loops (`for`/`while`/`for-of`/`for-in`) |
-| `04-arrays/` | Array creation & CRUD, higher-order methods (`map`, `filter`, `reduce`, `sort`, etc.) |
-| `05-objects/` | Object literals, property access, `Object.keys`/`values`/`entries`, `freeze`/`seal` |
-| `06-functions/` | Declarations, arrow functions, `this`, closures, IIFE, spread/rest, `call`/`apply`/`bind`, `new`, prototypes |
+| Folder                           | Topics                                                                                                       |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `01-basics/`                     | Console methods, variables (`var`/`let`/`const`), data types, typeof, copy behavior                          |
+| `02-data-types-deep-dive/`       | Numbers & Math, string methods, type conversion & coercion                                                   |
+| `03-operators-and-control-flow/` | Operators, conditionals (`if`/`switch`/ternary), loops (`for`/`while`/`for-of`/`for-in`)                     |
+| `04-arrays/`                     | Array creation & CRUD, higher-order methods (`map`, `filter`, `reduce`, `sort`, etc.)                        |
+| `05-objects/`                    | Object literals, property access, `Object.keys`/`values`/`entries`, `freeze`/`seal`                          |
+| `06-functions/`                  | Declarations, arrow functions, `this`, closures, IIFE, spread/rest, `call`/`apply`/`bind`, `new`, prototypes |
 
 All original course examples are preserved; additional examples are marked with 🆕.
 

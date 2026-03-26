@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Hoisting — Complete Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0f;
+        --surface: #141416;
+        --surface2: #1c1c20;
+        --border: #2a2a30;
+        --border2: #3a3a44;
+        --text: #e8e6f0;
+        --muted: #7a7888;
+        --accent: #a78bfa;
+        --accent2: #7c3aed;
+        --green: #34d399;
+        --green-dim: #1a3d30;
+        --amber: #fbbf24;
+        --amber-dim: #3d2e0a;
+        --red: #f87171;
+        --red-dim: #3d1212;
+        --blue: #60a5fa;
+        --blue-dim: #0f2240;
+        --pink: #f472b6;
+        --pink-dim: #3d0f28;
+        --cyan: #22d3ee;
+        --font-code: "JetBrains Mono", monospace;
+        --font-ui: "Syne", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-ui);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      /* ── HEADER ── */
+      .header {
+        border-bottom: 1px solid var(--border);
+        padding: 48px 40px 36px;
+        background: linear-gradient(180deg, #16121e 0%, var(--bg) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(124, 58, 237, 0.15) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .header-tag {
+        font-family: var(--font-code);
+        font-size: 11px;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        opacity: 0.8;
+      }
+      .header h1 {
+        font-size: clamp(28px, 5vw, 52px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .header-sub {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 400;
+        max-width: 560px;
+        font-family: var(--font-code);
+      }
+
+      /* ── NAV TABS ── */
+      .nav {
+        display: flex;
+        gap: 4px;
+        padding: 12px 40px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+        overflow-x: auto;
+        scrollbar-width: none;
+        flex-wrap: wrap;
+      }
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-btn {
+        font-family: var(--font-code);
+        font-size: 12px;
+        padding: 6px 14px;
+        border-radius: 6px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+        letter-spacing: 0.03em;
+      }
+      .nav-btn:hover {
+        color: var(--text);
+        background: var(--surface2);
+      }
+      .nav-btn.active {
+        color: var(--accent);
+        background: rgba(167, 139, 250, 0.08);
+        border-color: rgba(167, 139, 250, 0.25);
+      }
+
+      /* ── MAIN ── */
+      .main {
+        padding: 32px 40px;
+        max-width: 1100px;
+      }
+
+      .section {
+        display: none;
+      }
+      .section.visible {
+        display: block;
+      }
+
+      /* ── SECTION HEADER ── */
+      .sec-header {
+        margin-bottom: 24px;
+      }
+      .sec-num {
+        font-family: var(--font-code);
+        font-size: 11px;
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        margin-bottom: 6px;
+      }
+      .sec-title {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 6px;
+      }
+      .sec-desc {
+        color: var(--muted);
+        font-family: var(--font-code);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      /* ── CODE CARD ── */
+      .code-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .code-card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface2);
+      }
+      .dot-row {
+        display: flex;
+        gap: 6px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .dot-r {
+        background: #ff5f57;
+      }
+      .dot-y {
+        background: #febc2e;
+      }
+      .dot-g {
+        background: #28c840;
+      }
+      .file-name {
+        font-family: var(--font-code);
+        font-size: 12px;
+        color: var(--muted);
+        margin-left: 4px;
+      }
+      .badge {
+        margin-left: auto;
+        font-family: var(--font-code);
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.05em;
+      }
+      .badge-run {
+        background: var(--green-dim);
+        color: var(--green);
+      }
+      .badge-err {
+        background: var(--red-dim);
+        color: var(--red);
+      }
+      .badge-warn {
+        background: var(--amber-dim);
+        color: var(--amber);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: var(--font-code);
+        font-size: 13px;
+        line-height: 1.8;
+        overflow-x: auto;
+        tab-size: 4;
+      }
+      pre code {
+        font-family: inherit;
+      }
+
+      /* ── SYNTAX COLORS ── */
+      .kw {
+        color: #c084fc;
+      } /* var, function, const, let */
+      .fn {
+        color: #60a5fa;
+      } /* function names */
+      .str {
+        color: #86efac;
+      } /* strings */
+      .num {
+        color: #fb923c;
+      } /* numbers */
+      .cmt {
+        color: #4b5563;
+        font-style: italic;
+      } /* comments */
+      .cmt-hl {
+        color: var(--muted);
+        font-style: italic;
+      }
+      .log {
+        color: #22d3ee;
+      } /* console.log */
+      .op {
+        color: #a78bfa;
+      } /* operators */
+      .arrow {
+        color: #f9a8d4;
+      } /* => */
+      .undef {
+        color: var(--amber);
+      } /* undefined */
+
+      /* ── HIGHLIGHT ANNOTATION ── */
+      .ann {
+        display: inline-block;
+        margin-left: 12px;
+        font-size: 11px;
+        padding: 1px 8px;
+        border-radius: 4px;
+        vertical-align: middle;
+        letter-spacing: 0.04em;
+        font-style: normal;
+      }
+      .ann-green {
+        background: var(--green-dim);
+        color: var(--green);
+      }
+      .ann-amber {
+        background: var(--amber-dim);
+        color: var(--amber);
+      }
+      .ann-red {
+        background: var(--red-dim);
+        color: var(--red);
+      }
+      .ann-blue {
+        background: var(--blue-dim);
+        color: var(--blue);
+      }
+      .ann-purple {
+        background: rgba(167, 139, 250, 0.1);
+        color: var(--accent);
+      }
+
+      /* ── OUTPUT BOX ── */
+      .output {
+        border-top: 1px solid var(--border);
+        padding: 14px 20px;
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .output-label {
+        font-family: var(--font-code);
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .output-line {
+        font-family: var(--font-code);
+        font-size: 13px;
+        line-height: 1.7;
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+      }
+      .out-arrow {
+        color: var(--green);
+        opacity: 0.7;
+      }
+      .out-err {
+        color: var(--red);
+      }
+      .out-warn {
+        color: var(--amber);
+      }
+      .out-val {
+        color: var(--text);
+      }
+
+      /* ── CONCEPT BOX ── */
+      .concept {
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        border-left: 3px solid;
+      }
+      .concept-purple {
+        background: rgba(167, 139, 250, 0.06);
+        border-color: var(--accent);
+      }
+      .concept-amber {
+        background: var(--amber-dim);
+        border-color: var(--amber);
+        opacity: 0.9;
+      }
+      .concept-green {
+        background: var(--green-dim);
+        border-color: var(--green);
+      }
+      .concept-red {
+        background: var(--red-dim);
+        border-color: var(--red);
+      }
+      .concept-blue {
+        background: var(--blue-dim);
+        border-color: var(--blue);
+      }
+      .concept h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        letter-spacing: 0.04em;
+        font-family: var(--font-code);
+      }
+      .concept p {
+        font-family: var(--font-code);
+        font-size: 12.5px;
+        line-height: 1.75;
+        color: var(--muted);
+      }
+      .concept p code {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+
+      /* ── PHASE TABLE ── */
+      .phase-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 600px) {
+        .phase-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .phase-box {
+        border-radius: 10px;
+        padding: 18px;
+        border: 1px solid var(--border);
+      }
+      .phase-box h4 {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        font-family: var(--font-code);
+      }
+      .phase-box ul {
+        list-style: none;
+        font-family: var(--font-code);
+        font-size: 12.5px;
+        color: var(--muted);
+        line-height: 2;
+      }
+      .phase-box ul li::before {
+        content: "→  ";
+        color: var(--accent);
+      }
+
+      /* ── SUMMARY TABLE ── */
+      .table-wrap {
+        overflow-x: auto;
+        margin-bottom: 24px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-code);
+        font-size: 13px;
+      }
+      th {
+        text-align: left;
+        padding: 10px 14px;
+        background: var(--surface2);
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--border);
+      }
+      td {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        line-height: 1.6;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover td {
+        background: var(--surface2);
+      }
+      .td-g {
+        color: var(--green);
+      }
+      .td-a {
+        color: var(--amber);
+      }
+      .td-r {
+        color: var(--red);
+      }
+      .td-m {
+        color: var(--muted);
+      }
+
+      /* ── RULE CALLOUT ── */
+      .rule {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 14px 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      .rule-num {
+        min-width: 26px;
+        height: 26px;
+        background: var(--accent2);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: var(--font-code);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .rule-body {
+        font-family: var(--font-code);
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .rule-body strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .rule-body code {
+        color: var(--accent);
+        background: rgba(167, 139, 250, 0.1);
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--surface);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 3px;
+      }
+
+      .spacer {
+        height: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-tag">// javascript internals</div>
+      <h1>Hoisting</h1>
+      <p class="header-sub">
+        Complete guide — var, function, let, const, arrow functions, and the
+        memory phase
+      </p>
+    </div>
+
+    <div class="nav">
+      <button class="nav-btn active" onclick="show(0)">
+        00 · What is hoisting?
+      </button>
+      <button class="nav-btn" onclick="show(1)">01 · var hoisting</button>
+      <button class="nav-btn" onclick="show(2)">02 · function hoisting</button>
+      <button class="nav-btn" onclick="show(3)">03 · Before declaration</button>
+      <button class="nav-btn" onclick="show(4)">04 · Arrow fn hoisting</button>
+      <button class="nav-btn" onclick="show(5)">05 · var getName fn</button>
+      <button class="nav-btn" onclick="show(6)">06 · let &amp; const</button>
+      <button class="nav-btn" onclick="show(7)">07 · Complete summary</button>
+    </div>
+
+    <div class="main">
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 0 — WHAT IS HOISTING -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section visible" id="s0">
+        <div class="sec-header">
+          <div class="sec-num">// 00</div>
+          <div class="sec-title">What is hoisting?</div>
+          <div class="sec-desc">
+            Hoisting is NOT magic. It is the result of how the JS engine's
+            memory creation phase works.
+          </div>
+        </div>
+
+        <div class="concept concept-purple">
+          <h4>The real definition</h4>
+          <p>
+            Before any code runs, JavaScript scans the entire file and allocates
+            memory for every variable and function declaration. Variables
+            declared with <code>var</code> get memory set to
+            <code>undefined</code>. Function declarations get their entire body
+            stored. This is the <strong>memory creation phase</strong> — and
+            because declarations are "already known" before execution starts, it
+            <em>appears</em> as if they were moved to the top. That illusion is
+            called hoisting.
+          </p>
+        </div>
+
+        <div class="phase-grid">
+          <div class="phase-box" style="border-color: var(--amber)">
+            <h4 style="color: var(--amber)">Phase 1 — Memory creation</h4>
+            <ul>
+              <li>JS engine scans the whole file</li>
+              <li>
+                <code>var</code> declarations → set to <code>undefined</code>
+              </li>
+              <li>Function declarations → full body stored</li>
+              <li>Nothing has executed yet</li>
+            </ul>
+          </div>
+          <div class="phase-box" style="border-color: var(--green)">
+            <h4 style="color: var(--green)">Phase 2 — Code execution</h4>
+            <ul>
+              <li>Code runs line by line, top to bottom</li>
+              <li>Values are assigned to variables</li>
+              <li>Function calls create new execution contexts</li>
+              <li>Completed contexts are popped off the stack</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">concept.js</span>
+          </div>
+          <pre><span class="cmt">// ─────────────────────────────────────────────────────────</span>
+<span class="cmt">// PHASE 1  (before any line runs, engine does this in memory)</span>
+<span class="cmt">// ─────────────────────────────────────────────────────────</span>
+<span class="cmt">//</span>
+<span class="cmt">//   x          →  undefined    (var declaration found)</span>
+<span class="cmt">//   getName    →  function() { console.log("...") }  (full body)</span>
+<span class="cmt">//</span>
+<span class="cmt">// ─────────────────────────────────────────────────────────</span>
+<span class="cmt">// PHASE 2  (now execution actually starts from line 1)</span>
+<span class="cmt">// ─────────────────────────────────────────────────────────</span>
+
+<span class="kw">var</span> x <span class="op">=</span> <span class="num">7</span>;          <span class="cmt-hl">// ← x was undefined in memory; NOW assigned 7</span>
+
+<span class="kw">function</span> <span class="fn">getName</span>() {
+    <span class="log">console</span>.log(<span class="str">"My name is hoisting"</span>);
+    <span class="cmt-hl">// ↑ full body was already in memory since Phase 1</span>
+}
+
+<span class="fn">getName</span>();           <span class="cmt-hl">// ✅ works — body was already stored in Phase 1</span>
+<span class="log">console</span>.log(x);       <span class="cmt-hl">// ✅ 7   — x was assigned just above</span>
+<span class="log">console</span>.log(<span class="fn">getName</span>); <span class="cmt-hl">// ✅ prints the full function object</span></pre>
+          <div class="output">
+            <div class="output-label">console output</div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-val">My name is hoisting</span>
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span><span class="out-val">7</span>
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-val"
+                >ƒ getName() { console.log("My name is hoisting") }</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 1 — VAR HOISTING -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s1">
+        <div class="sec-header">
+          <div class="sec-num">// 01</div>
+          <div class="sec-title">var hoisting</div>
+          <div class="sec-desc">
+            var declarations are hoisted with a value of
+            <code>undefined</code> — not the real value.
+          </div>
+        </div>
+
+        <div class="rule">
+          <div class="rule-num">!</div>
+          <div class="rule-body">
+            <strong>Key rule:</strong> <code>var</code> is hoisted to the top of
+            its scope and initialized to <code>undefined</code>. The
+            <em>assignment</em> is NOT hoisted — only the declaration.
+          </div>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">var_hoisting.js</span>
+            <span class="badge badge-warn">returns undefined</span>
+          </div>
+          <pre><span class="cmt">// ── WHAT YOU WRITE ──────────────────────────────────────────</span>
+
+<span class="log">console</span>.log(x);  <span class="cmt-hl">// you might expect: ReferenceError</span>
+                  <span class="cmt-hl">// you actually get: undefined  ← hoisting at work</span>
+
+<span class="kw">var</span> x <span class="op">=</span> <span class="num">7</span>;
+<span class="log">console</span>.log(x);  <span class="cmt-hl">// 7  — assignment ran, now x has its real value</span>
+
+
+<span class="cmt">// ── HOW THE ENGINE SEES IT (mental model) ───────────────────</span>
+
+<span class="cmt">// Phase 1 memory:  x = undefined   ← only declaration is hoisted</span>
+
+<span class="kw">var</span> x;            <span class="cmt-hl">// ← hoisted declaration (engine does this first)</span>
+<span class="log">console</span>.log(x);  <span class="cmt-hl">// undefined — declaration exists, no value yet</span>
+x <span class="op">=</span> <span class="num">7</span>;            <span class="cmt-hl">// ← assignment stays here, NOT hoisted</span>
+<span class="log">console</span>.log(x);  <span class="cmt-hl">// 7
+
+
+// ── THE TRAP ───────────────────────────────────────────────
+//
+//   var does NOT throw an error when accessed before assignment.
+//   It silently returns undefined.
+//   This is one of the most common JS bugs.
+//</span></pre>
+          <div class="output">
+            <div class="output-label">console output</div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-warn">undefined</span
+              ><span
+                style="
+                  color: var(--amber);
+                  font-family: var(--font-code);
+                  font-size: 11px;
+                  margin-left: 8px;
+                "
+                >← hoisted, not assigned yet</span
+              >
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span><span class="out-val">7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 2 — FUNCTION HOISTING -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s2">
+        <div class="sec-header">
+          <div class="sec-num">// 02</div>
+          <div class="sec-title">function declaration hoisting</div>
+          <div class="sec-desc">
+            Function declarations are hoisted completely — you can call them
+            before they appear in your code.
+          </div>
+        </div>
+
+        <div class="concept concept-green">
+          <h4 style="color: var(--green)">
+            Function declarations: fully hoisted
+          </h4>
+          <p>
+            Unlike <code>var</code>, a <strong>function declaration</strong> is
+            hoisted with its entire body. In Phase 1, the engine stores the
+            complete function. So you can call it from anywhere in the same
+            scope — even on line 1 — before the function keyword appears in your
+            file.
+          </p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">function_hoisting.js</span>
+            <span class="badge badge-run">works perfectly</span>
+          </div>
+          <pre><span class="cmt">// ── CALLING BEFORE DECLARATION ──────────────────────────────</span>
+
+<span class="fn">getName</span>();
+<span class="cmt-hl">// ✅ "My name is hoisting" — works! Engine already stored the body</span>
+
+<span class="log">console</span>.log(<span class="fn">getName</span>);
+<span class="cmt-hl">// ✅ prints:  ƒ getName() { console.log("My name is hoisting") }</span>
+<span class="cmt-hl">//            ↑ full function body was in memory since Phase 1</span>
+
+
+<span class="kw">function</span> <span class="fn">getName</span>() {
+    <span class="log">console</span>.log(<span class="str">"My name is hoisting"</span>);
+}
+<span class="cmt-hl">// ↑ declaration appears here in the file, but it was already
+//   fully available from the top because of hoisting</span>
+
+
+<span class="cmt">// ── PHASE 1 MEMORY SNAPSHOT ─────────────────────────────────</span>
+<span class="cmt">//</span>
+<span class="cmt">//   getName  →  ƒ () { console.log("My name is hoisting") }</span>
+<span class="cmt">//               ^^^^^ the ENTIRE function body is stored here</span>
+<span class="cmt">//               NOT undefined — the real function object</span>
+<span class="cmt">//</span></pre>
+          <div class="output">
+            <div class="output-label">console output</div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-val">My name is hoisting</span>
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-val"
+                >ƒ getName() { console.log("My name is hoisting") }</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 3 — BEFORE DECLARATION (original example) -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s3">
+        <div class="sec-header">
+          <div class="sec-num">// 03</div>
+          <div class="sec-title">
+            Accessing before declaration — your original example
+          </div>
+          <div class="sec-desc">
+            What actually happens when you flip the order and call everything
+            before declaring it?
+          </div>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">before_declaration.js</span>
+            <span class="badge badge-run">runs, no errors</span>
+          </div>
+          <pre><span class="cmt">// ── PHASE 1  (memory allocation — before any code runs) ─────</span>
+<span class="cmt">//</span>
+<span class="cmt">//   x        =  undefined</span>
+<span class="cmt">//   getName  =  ƒ () { console.log("My name is hoisting") }</span>
+<span class="cmt">//</span>
+<span class="cmt">// ── PHASE 2  (line by line execution starts here) ────────────</span>
+
+<span class="fn">getName</span>();
+<span class="cmt-hl">// Line 1 executes:  getName was already in memory as a full function</span>
+<span class="cmt-hl">// Result:  ✅  "My name is hoisting"</span>
+
+<span class="log">console</span>.log(x);
+<span class="cmt-hl">// Line 2 executes:  x was in memory, but only as undefined (no assignment ran yet)</span>
+<span class="cmt-hl">// Result:  ⚠️  undefined   ← NOT an error, but NOT 7 either</span>
+
+<span class="log">console</span>.log(<span class="fn">getName</span>);
+<span class="cmt-hl">// Line 3 executes:  getName is a full function object in memory</span>
+<span class="cmt-hl">// Result:  ✅  ƒ getName() { ... }</span>
+
+
+<span class="cmt">// ── DECLARATIONS APPEAR DOWN HERE ───────────────────────────</span>
+
+<span class="kw">var</span> x <span class="op">=</span> <span class="num">7</span>;
+<span class="cmt-hl">// x is NOW assigned 7 in memory — too late for the log above</span>
+
+<span class="kw">function</span> <span class="fn">getName</span>() {
+    <span class="log">console</span>.log(<span class="str">"My name is hoisting"</span>);
+}
+<span class="cmt-hl">// This declaration was already fully in memory — this line just
+// confirms what Phase 1 already stored</span></pre>
+          <div class="output">
+            <div class="output-label">console output</div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-val">My name is hoisting</span
+              ><span
+                style="
+                  color: var(--green);
+                  font-family: var(--font-code);
+                  font-size: 11px;
+                  margin-left: 8px;
+                "
+                >fn was fully hoisted</span
+              >
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-warn">undefined</span
+              ><span
+                style="
+                  color: var(--amber);
+                  font-family: var(--font-code);
+                  font-size: 11px;
+                  margin-left: 8px;
+                "
+                >var hoisted but not yet assigned</span
+              >
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-val"
+                >ƒ getName() { console.log("My name is hoisting") }</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 4 — ARROW FUNCTION HOISTING -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s4">
+        <div class="sec-header">
+          <div class="sec-num">// 04</div>
+          <div class="sec-title">Arrow function hoisting</div>
+          <div class="sec-desc">
+            Arrow functions assigned to <code>var</code> behave like variables —
+            hoisted as <code>undefined</code>, not as a function.
+          </div>
+        </div>
+
+        <div class="concept concept-red">
+          <h4 style="color: var(--red)">
+            Arrow functions are NOT hoisted as functions
+          </h4>
+          <p>
+            When you write <code>var getName = () =&gt; {}</code>, what gets
+            hoisted is <code>getName</code> as a <code>var</code> — set to
+            <code>undefined</code>. The arrow function body is NOT stored in
+            Phase 1. Calling it before assignment throws a
+            <code>TypeError</code>: you're trying to call
+            <code>undefined</code> as a function.
+          </p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">arrow_hoisting.js</span>
+            <span class="badge badge-err">TypeError if called early</span>
+          </div>
+          <pre><span class="cmt">// ── PHASE 1  (memory allocation) ────────────────────────────</span>
+<span class="cmt">//</span>
+<span class="cmt">//   getName  =  undefined   ← treated as var, NOT as a function</span>
+<span class="cmt">//</span>
+<span class="cmt">// ── PHASE 2  (execution) ─────────────────────────────────────</span>
+
+<span class="fn">getName</span>();
+<span class="cmt-hl">// ❌  TypeError: getName is not a function</span>
+<span class="cmt-hl">//     getName is undefined in memory right now</span>
+<span class="cmt-hl">//     you are calling undefined() — that throws</span>
+
+<span class="log">console</span>.log(<span class="fn">getName</span>);
+<span class="cmt-hl">// ⚠️  undefined — the var is in memory but holds no function yet</span>
+
+
+<span class="kw">var</span> <span class="fn">getName</span> <span class="op">=</span> <span class="arrow">()</span> <span class="arrow">=&gt;</span> {
+    <span class="log">console</span>.log(<span class="str">"My name is hoisting"</span>);
+};
+<span class="cmt-hl">// ↑ assignment happens HERE in Phase 2
+//   only AFTER this line does getName hold the arrow function</span>
+
+<span class="fn">getName</span>();
+<span class="cmt-hl">// ✅  "My name is hoisting" — now it works, assignment ran above</span>
+
+<span class="log">console</span>.log(<span class="fn">getName</span>);
+<span class="cmt-hl">// ✅  ƒ () { console.log("My name is hoisting") }</span>
+
+
+<span class="cmt">// ── WHY? ───────────────────────────────────────────────────
+//
+//  var getName = () => {}  is syntactically:
+//    → a var declaration     (hoisted, set to undefined)
+//    → with an assignment    (NOT hoisted — stays in Phase 2)
+//
+//  The arrow function body is the VALUE being assigned.
+//  Values are never hoisted. Only declarations are.
+//</span></pre>
+          <div class="output">
+            <div class="output-label">
+              console output (if code is run top to bottom)
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-err">TypeError: getName is not a function</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 5 — VAR getName = function -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s5">
+        <div class="sec-header">
+          <div class="sec-num">// 05</div>
+          <div class="sec-title">
+            var getName = function(){} — function expression
+          </div>
+          <div class="sec-desc">
+            Same behaviour as arrow functions — the variable is hoisted, but the
+            function body is not.
+          </div>
+        </div>
+
+        <div class="rule">
+          <div class="rule-num">!</div>
+          <div class="rule-body">
+            <strong>Function expression</strong> = a function assigned to a
+            variable. It behaves like <code>var</code> hoisting, not like
+            function declaration hoisting. The name is hoisted as
+            <code>undefined</code>; the function body is NOT available until
+            execution reaches the assignment line.
+          </div>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">fn_expression_hoisting.js</span>
+            <span class="badge badge-err">TypeError if called early</span>
+          </div>
+          <pre><span class="cmt">// ── PHASE 1  (memory allocation) ────────────────────────────</span>
+<span class="cmt">//</span>
+<span class="cmt">//   getName  =  undefined   ← var declaration hoisted</span>
+<span class="cmt">//               the function body is NOT stored yet</span>
+<span class="cmt">//</span>
+
+<span class="fn">getName</span>();
+<span class="cmt-hl">// ❌  TypeError: getName is not a function</span>
+<span class="cmt-hl">//     Memory at this point:  getName = undefined</span>
+<span class="cmt-hl">//     undefined() throws a TypeError</span>
+
+<span class="log">console</span>.log(<span class="fn">getName</span>);
+<span class="cmt-hl">// ⚠️  undefined — var was hoisted but no function assigned yet</span>
+
+
+<span class="kw">var</span> <span class="fn">getName</span> <span class="op">=</span> <span class="kw">function</span>() {
+    <span class="log">console</span>.log(<span class="str">"My name is hoisting"</span>);
+};
+<span class="cmt-hl">// ↑ Phase 2: getName is NOW assigned the function object
+//   everything above this line only saw undefined</span>
+
+<span class="fn">getName</span>();
+<span class="cmt-hl">// ✅  "My name is hoisting" — assignment already ran</span>
+
+<span class="log">console</span>.log(<span class="fn">getName</span>);
+<span class="cmt-hl">// ✅  ƒ () { console.log("My name is hoisting") }</span>
+
+
+<span class="cmt">// ── COMPARE THE THREE FORMS ─────────────────────────────────</span>
+<span class="cmt">//</span>
+<span class="cmt">//   function getName()  {}    → FULLY hoisted (declaration)</span>
+<span class="cmt">//   var getName = function(){}→ PARTIALLY hoisted (var = undefined)</span>
+<span class="cmt">//   var getName = () => {}    → PARTIALLY hoisted (var = undefined)</span>
+<span class="cmt">//</span>
+<span class="cmt">//   The difference:  where does the  function  keyword appear?</span>
+<span class="cmt">//   At the start of a statement? → declaration → fully hoisted</span>
+<span class="cmt">//   After  =  (as a value)?      → expression  → only var hoisted</span>
+<span class="cmt">//</span></pre>
+          <div class="output">
+            <div class="output-label">
+              console output (called before assignment)
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-err">TypeError: getName is not a function</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 6 — LET AND CONST -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s6">
+        <div class="sec-header">
+          <div class="sec-num">// 06</div>
+          <div class="sec-title">
+            let &amp; const hoisting — the Temporal Dead Zone
+          </div>
+          <div class="sec-desc">
+            <code>let</code> and <code>const</code> ARE hoisted — but they are
+            NOT initialized. Accessing them before declaration throws a
+            ReferenceError.
+          </div>
+        </div>
+
+        <div class="concept concept-red">
+          <h4 style="color: var(--red)">Temporal Dead Zone (TDZ)</h4>
+          <p>
+            From the start of the block scope until the <code>let</code> or
+            <code>const</code> declaration is reached in code, the variable
+            exists in memory but is in an "uninitialized" state. Any access in
+            this zone throws
+            <code
+              >ReferenceError: Cannot access '...' before initialization</code
+            >. This is the TDZ — the engine knows the variable exists, but
+            deliberately refuses access.
+          </p>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">let_const_hoisting.js</span>
+            <span class="badge badge-err">ReferenceError in TDZ</span>
+          </div>
+          <pre><span class="cmt">// ── var  (silently returns undefined) ───────────────────────</span>
+
+<span class="log">console</span>.log(a);  <span class="cmt-hl">// ⚠️  undefined  — no error, but surprising</span>
+<span class="kw">var</span> a <span class="op">=</span> <span class="num">10</span>;
+
+
+<span class="cmt">// ── let  (Temporal Dead Zone — throws ReferenceError) ────────</span>
+
+<span class="log">console</span>.log(b);  <span class="cmt-hl">// ❌  ReferenceError: Cannot access 'b' before initialization</span>
+                  <span class="cmt-hl">//     b IS in memory (hoisted) but uninitialized — TDZ</span>
+<span class="kw">let</span> b <span class="op">=</span> <span class="num">20</span>;
+
+
+<span class="cmt">// ── const  (same TDZ behaviour as let) ──────────────────────</span>
+
+<span class="log">console</span>.log(c);  <span class="cmt-hl">// ❌  ReferenceError: Cannot access 'c' before initialization</span>
+<span class="kw">const</span> c <span class="op">=</span> <span class="num">30</span>;
+
+
+<span class="cmt">// ── const also requires immediate initialization ─────────────</span>
+
+<span class="kw">const</span> d;         <span class="cmt-hl">// ❌  SyntaxError: Missing initializer in const declaration</span>
+                  <span class="cmt-hl">//     const MUST be declared + assigned on the same line</span>
+d <span class="op">=</span> <span class="num">40</span>;
+
+
+<span class="cmt">// ── MENTAL MODEL COMPARISON ─────────────────────────────────</span>
+<span class="cmt">//</span>
+<span class="cmt">//  Memory Phase 1 snapshot:</span>
+<span class="cmt">//</span>
+<span class="cmt">//   var a   →  undefined       ← initialized to undefined, safe to read</span>
+<span class="cmt">//   let b   →  &lt;uninitialized&gt; ← exists but BLOCKED from access (TDZ)</span>
+<span class="cmt">//   const c →  &lt;uninitialized&gt; ← same as let</span>
+<span class="cmt">//</span>
+<span class="cmt">//  The TDZ ends when the engine reaches the declaration line.</span>
+<span class="cmt">//  After that, the variable is accessible normally.</span>
+<span class="cmt">//</span></pre>
+          <div class="output">
+            <div class="output-label">console output</div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-warn">undefined</span
+              ><span
+                style="
+                  color: var(--amber);
+                  font-family: var(--font-code);
+                  font-size: 11px;
+                  margin-left: 8px;
+                "
+                >var — silent</span
+              >
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-err"
+                >ReferenceError: Cannot access 'b' before initialization</span
+              >
+            </div>
+            <div class="output-line">
+              <span class="out-arrow">▶</span
+              ><span class="out-err"
+                >ReferenceError: Cannot access 'c' before initialization</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <!-- SECTION 7 — COMPLETE SUMMARY TABLE -->
+      <!-- ═══════════════════════════════════════════════════════════════════ -->
+      <div class="section" id="s7">
+        <div class="sec-header">
+          <div class="sec-num">// 07</div>
+          <div class="sec-title">Complete hoisting summary</div>
+          <div class="sec-desc">
+            Every declaration type and exactly what happens during Phase 1 vs
+            Phase 2.
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Declaration</th>
+                <th>Hoisted?</th>
+                <th>Phase 1 value</th>
+                <th>Call before declaration</th>
+                <th>Access before assignment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>function getName(){}</code></td>
+                <td class="td-g">✅ Yes — fully</td>
+                <td class="td-g">Full function body</td>
+                <td class="td-g">✅ Works perfectly</td>
+                <td class="td-g">✅ Works — returns fn</td>
+              </tr>
+              <tr>
+                <td><code>var x = 7</code></td>
+                <td class="td-a">⚠️ Yes — partially</td>
+                <td class="td-a">undefined</td>
+                <td class="td-m">N/A (not callable)</td>
+                <td class="td-a">⚠️ Returns undefined</td>
+              </tr>
+              <tr>
+                <td><code>var getName = function(){}</code></td>
+                <td class="td-a">⚠️ Yes — partially</td>
+                <td class="td-a">undefined</td>
+                <td class="td-r">❌ TypeError</td>
+                <td class="td-a">⚠️ Returns undefined</td>
+              </tr>
+              <tr>
+                <td><code>var getName = () => {}</code></td>
+                <td class="td-a">⚠️ Yes — partially</td>
+                <td class="td-a">undefined</td>
+                <td class="td-r">❌ TypeError</td>
+                <td class="td-a">⚠️ Returns undefined</td>
+              </tr>
+              <tr>
+                <td><code>let x = 7</code></td>
+                <td class="td-a">⚠️ Yes — in TDZ</td>
+                <td class="td-r">&lt;uninitialized&gt;</td>
+                <td class="td-m">N/A (not callable)</td>
+                <td class="td-r">❌ ReferenceError</td>
+              </tr>
+              <tr>
+                <td><code>const x = 7</code></td>
+                <td class="td-a">⚠️ Yes — in TDZ</td>
+                <td class="td-r">&lt;uninitialized&gt;</td>
+                <td class="td-m">N/A (not callable)</td>
+                <td class="td-r">❌ ReferenceError</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dot-row">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">all_cases_combined.js</span>
+          </div>
+          <pre><span class="cmt">// ═══════════════════════════════════════════════════════════
+// COMPLETE HOISTING REFERENCE  — all six cases in one file
+// ═══════════════════════════════════════════════════════════</span>
+
+
+<span class="cmt">// ── CASE 1: function declaration ────────────────────────────
+// Phase 1: getName1 = ƒ (full body stored)
+// Calling before declaration: WORKS</span>
+
+<span class="fn">getName1</span>();                      <span class="cmt-hl">// ✅  "fn declaration"</span>
+<span class="log">console</span>.log(<span class="fn">getName1</span>);           <span class="cmt-hl">// ✅  ƒ getName1() {...}</span>
+
+<span class="kw">function</span> <span class="fn">getName1</span>() {
+    <span class="log">console</span>.log(<span class="str">"fn declaration"</span>);
+}
+
+
+<span class="cmt">// ── CASE 2: var variable ─────────────────────────────────────
+// Phase 1: x = undefined
+// Access before assignment: returns undefined (no error)</span>
+
+<span class="log">console</span>.log(x);                  <span class="cmt-hl">// ⚠️  undefined  (hoisted, not yet 7)</span>
+<span class="kw">var</span> x <span class="op">=</span> <span class="num">7</span>;
+<span class="log">console</span>.log(x);                  <span class="cmt-hl">// ✅  7</span>
+
+
+<span class="cmt">// ── CASE 3: var + function expression ────────────────────────
+// Phase 1: getName2 = undefined
+// Calling before assignment: TypeError</span>
+
+<span class="log">console</span>.log(<span class="fn">getName2</span>);           <span class="cmt-hl">// ⚠️  undefined</span>
+<span class="cmt-hl">// getName2();                   // ❌  TypeError: getName2 is not a function</span>
+
+<span class="kw">var</span> <span class="fn">getName2</span> <span class="op">=</span> <span class="kw">function</span>() {
+    <span class="log">console</span>.log(<span class="str">"fn expression"</span>);
+};
+<span class="fn">getName2</span>();                      <span class="cmt-hl">// ✅  "fn expression"  (after assignment)</span>
+
+
+<span class="cmt">// ── CASE 4: var + arrow function ─────────────────────────────
+// Phase 1: getName3 = undefined
+// Calling before assignment: TypeError</span>
+
+<span class="log">console</span>.log(<span class="fn">getName3</span>);           <span class="cmt-hl">// ⚠️  undefined</span>
+<span class="cmt-hl">// getName3();                   // ❌  TypeError: getName3 is not a function</span>
+
+<span class="kw">var</span> <span class="fn">getName3</span> <span class="op">=</span> <span class="arrow">()</span> <span class="arrow">=&gt;</span> {
+    <span class="log">console</span>.log(<span class="str">"arrow fn"</span>);
+};
+<span class="fn">getName3</span>();                      <span class="cmt-hl">// ✅  "arrow fn"  (after assignment)</span>
+
+
+<span class="cmt">// ── CASE 5: let ──────────────────────────────────────────────
+// Phase 1: y = &lt;uninitialized&gt;  (TDZ — cannot be touched)
+// Access before declaration: ReferenceError</span>
+
+<span class="cmt-hl">// console.log(y);               // ❌  ReferenceError — TDZ</span>
+<span class="kw">let</span> y <span class="op">=</span> <span class="num">20</span>;
+<span class="log">console</span>.log(y);                  <span class="cmt-hl">// ✅  20  (TDZ ended at declaration)</span>
+
+
+<span class="cmt">// ── CASE 6: const ────────────────────────────────────────────
+// Phase 1: z = &lt;uninitialized&gt;  (TDZ — same as let)
+// Must be initialized at declaration — no separate assignment allowed</span>
+
+<span class="cmt-hl">// console.log(z);               // ❌  ReferenceError — TDZ</span>
+<span class="kw">const</span> z <span class="op">=</span> <span class="num">30</span>;
+<span class="log">console</span>.log(z);                  <span class="cmt-hl">// ✅  30</span>
+<span class="cmt-hl">// z = 40;                       // ❌  TypeError: Assignment to constant variable</span>
+
+
+<span class="cmt">// ═══════════════════════════════════════════════════════════
+// THE GOLDEN RULE
+//
+//   Only  FUNCTION DECLARATIONS  are fully hoisted.
+//   Everything else is either:
+//     → undefined  (var)
+//     → in TDZ     (let, const)
+//     → TypeError  (calling undefined as a function)
+//
+//   Best practice: always declare before you use.
+// ═══════════════════════════════════════════════════════════</span></pre>
+        </div>
+
+        <div class="rule">
+          <div class="rule-num">1</div>
+          <div class="rule-body">
+            <strong>Function declarations</strong> are the <em>only</em> thing
+            fully hoisted. You get the entire function body from line 1 of the
+            file.
+          </div>
+        </div>
+        <div class="rule">
+          <div class="rule-num">2</div>
+          <div class="rule-body">
+            <code>var</code> declarations are hoisted as <code>undefined</code>.
+            No error — but a silent <code>undefined</code> is often worse
+            because it hides bugs.
+          </div>
+        </div>
+        <div class="rule">
+          <div class="rule-num">3</div>
+          <div class="rule-body">
+            <code>var</code> + function expression / arrow function: the
+            <em>name</em> is hoisted as <code>undefined</code>. Calling it
+            before the assignment line throws <strong>TypeError</strong>.
+          </div>
+        </div>
+        <div class="rule">
+          <div class="rule-num">4</div>
+          <div class="rule-body">
+            <code>let</code> and <code>const</code> enter a
+            <strong>Temporal Dead Zone</strong> — they are in memory but
+            inaccessible. Any touch before the declaration line throws
+            <strong>ReferenceError</strong>.
+          </div>
+        </div>
+        <div class="rule">
+          <div class="rule-num">5</div>
+          <div class="rule-body">
+            The root cause: JavaScript's
+            <strong>two-phase execution model</strong>. Phase 1 = memory
+            creation. Phase 2 = code runs. Hoisting is just what Phase 1 looks
+            like from Phase 2's perspective.
+          </div>
+        </div>
+
+        <div class="spacer"></div>
+      </div>
+    </div>
+    <!-- /main -->
+
+    <script>
+      function show(n) {
+        document
+          .querySelectorAll(".section")
+          .forEach((s, i) => s.classList.toggle("visible", i === n));
+        document
+          .querySelectorAll(".nav-btn")
+          .forEach((b, i) => b.classList.toggle("active", i === n));
+      }
+    </script>
+  </body>
+</html>

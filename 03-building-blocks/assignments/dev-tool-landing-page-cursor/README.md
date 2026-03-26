@@ -28,7 +28,7 @@ This assignment involves creating a **pixel-perfect clone of the Cursor.com webs
 ## 🌐 Live Preview
 
 🔗 **Hosted Page:**
-👉 [https://web-dev-cohort26.vercel.app/building-blocks/assignments/dev-tool-landing-page-cursor/cursor.html]
+👉 [https://web-dev-cohort26.vercel.app/03-building-blocks/assignments/dev-tool-landing-page-cursor/cursor.html]
 
 ---
 
@@ -52,21 +52,21 @@ This assignment focuses on:
 
 ## 📋 Sections Implemented
 
-| Section | Description |
-|---------|-------------|
-| Header | Fixed nav with logo, dropdowns, Sign in & Download buttons |
-| Hero | Headline with IDE mockup demo (sidebar, editor, chat panel) |
-| Logo Garden | 8 company logos in grid layout |
-| Feature 1 | Agents - with background image and text |
-| Feature 2 | Tab autocomplete - reversed layout |
-| Feature 3 | Surfaces - Slack & GitHub demo windows |
-| Testimonials | 6 quote cards with avatars |
-| Stay on Frontier | 3 feature cards with model selector |
-| Changelog | 4 recent update cards |
-| Team/About | "Join us" CTA with team photo |
-| Recent Highlights | 3 blog post cards |
-| Final CTA | "Try Cursor now" with download button |
-| Footer | 5-column links, theme switcher, language selector |
+| Section           | Description                                                 |
+| ----------------- | ----------------------------------------------------------- |
+| Header            | Fixed nav with logo, dropdowns, Sign in & Download buttons  |
+| Hero              | Headline with IDE mockup demo (sidebar, editor, chat panel) |
+| Logo Garden       | 8 company logos in grid layout                              |
+| Feature 1         | Agents - with background image and text                     |
+| Feature 2         | Tab autocomplete - reversed layout                          |
+| Feature 3         | Surfaces - Slack & GitHub demo windows                      |
+| Testimonials      | 6 quote cards with avatars                                  |
+| Stay on Frontier  | 3 feature cards with model selector                         |
+| Changelog         | 4 recent update cards                                       |
+| Team/About        | "Join us" CTA with team photo                               |
+| Recent Highlights | 3 blog post cards                                           |
+| Final CTA         | "Try Cursor now" with download button                       |
+| Footer            | 5-column links, theme switcher, language selector           |
 
 ---
 

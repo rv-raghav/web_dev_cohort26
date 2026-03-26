@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Complete Syllabus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="shared/style.css" />
+    <style>
+      body {
+        padding: 0;
+      }
+      .hero {
+        padding: 64px 48px 52px;
+        background: linear-gradient(180deg, #100d1a 0%, var(--bg) 100%);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        left: -80px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(124, 58, 237, 0.14) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -60px;
+        right: -40px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(34, 211, 238, 0.07) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-tag {
+        font-family: var(--font-code);
+        font-size: 11px;
+        color: var(--accent);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        opacity: 0.8;
+      }
+      .hero h1 {
+        font-size: clamp(36px, 6vw, 72px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        background: linear-gradient(
+          135deg,
+          #fff 20%,
+          #c4b5fd 60%,
+          var(--cyan) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-sub {
+        margin-top: 14px;
+        color: var(--muted);
+        font-family: var(--font-code);
+        font-size: 14px;
+        line-height: 1.8;
+        max-width: 580px;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 28px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        font-family: var(--font-code);
+      }
+      .stat-num {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        margin-top: 3px;
+      }
+
+      /* phases grid */
+      .phases-wrap {
+        padding: 40px 48px 60px;
+      }
+      .phases-heading {
+        font-family: var(--font-code);
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .phases-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      .phase-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition:
+          border-color 0.2s,
+          transform 0.15s,
+          background 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .phase-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 20% 20%,
+          var(--card-glow, rgba(167, 139, 250, 0.06)) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .phase-card:hover {
+        border-color: var(--border2);
+        background: var(--surface2);
+        transform: translateY(-2px);
+      }
+      .card-phase-num {
+        font-family: var(--font-code);
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .card-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+      .card-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+      .card-desc {
+        font-family: var(--font-code);
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .card-topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .card-topic {
+        font-family: var(--font-code);
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: var(--surface3);
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+      .card-arrow {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: var(--muted);
+        font-size: 18px;
+        transition:
+          transform 0.2s,
+          color 0.2s;
+      }
+      .phase-card:hover .card-arrow {
+        transform: translateX(3px);
+        color: var(--accent);
+      }
+
+      /* Level badges on cards */
+      .card-level {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-family: var(--font-code);
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 20px;
+      }
+      .lvl-beginner {
+        background: var(--green-dim);
+        color: var(--green);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+      }
+      .lvl-mid {
+        background: var(--amber-dim);
+        color: var(--amber);
+        border: 1px solid rgba(251, 191, 36, 0.2);
+      }
+      .lvl-advanced {
+        background: var(--red-dim);
+        color: var(--red);
+        border: 1px solid rgba(248, 113, 113, 0.2);
+      }
+      .lvl-mixed {
+        background: rgba(167, 139, 250, 0.1);
+        color: var(--accent);
+        border: 1px solid rgba(167, 139, 250, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-tag">// complete reference</div>
+      <h1>JavaScript<br />Syllabus</h1>
+      <p class="hero-sub">
+        Full-depth coverage from zero to advanced — every concept explained with
+        annotated code, phase breakdowns, edge cases, gotchas, and summary
+        tables.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">8</div>
+          <div class="stat-label">phases</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">topics</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">code examples</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">gotchas covered</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phases-wrap">
+      <div class="phases-heading">// pick a phase to study</div>
+      <div class="phases-grid">
+        <a
+          href="phases/phase1-fundamentals/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(52, 211, 153, 0.08)"
+        >
+          <span class="card-phase-num">Phase 01</span>
+          <span class="card-level lvl-beginner">Beginner</span>
+          <div class="card-icon">🌱</div>
+          <div class="card-title">JS Fundamentals</div>
+          <div class="card-desc">
+            The absolute foundation — how JS runs in the browser, variables,
+            types, operators, conditionals and loops.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Variables</span>
+            <span class="card-topic">Data Types</span>
+            <span class="card-topic">Operators</span>
+            <span class="card-topic">Conditionals</span>
+            <span class="card-topic">Loops</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase2-functions/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(96, 165, 250, 0.08)"
+        >
+          <span class="card-phase-num">Phase 02</span>
+          <span class="card-level lvl-beginner">Beginner</span>
+          <div class="card-icon">⚡</div>
+          <div class="card-title">Functions</div>
+          <div class="card-desc">
+            The heart of JavaScript — declarations, expressions, arrows,
+            hoisting, scope, and closures explained deeply.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Declarations</span>
+            <span class="card-topic">Hoisting</span>
+            <span class="card-topic">Scope</span>
+            <span class="card-topic">Closures</span>
+            <span class="card-topic">Arrow Fns</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase3-objects/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(251, 191, 36, 0.06)"
+        >
+          <span class="card-phase-num">Phase 03</span>
+          <span class="card-level lvl-mid">Intermediate</span>
+          <div class="card-icon">📦</div>
+          <div class="card-title">Objects & Data Types</div>
+          <div class="card-desc">
+            Objects, references, methods, optional chaining, JSON, Symbols,
+            Strings, Arrays and their built-in methods.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Objects</span>
+            <span class="card-topic">Arrays</span>
+            <span class="card-topic">JSON</span>
+            <span class="card-topic">Symbol</span>
+            <span class="card-topic">Date</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase4-modern-es6/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(244, 114, 182, 0.07)"
+        >
+          <span class="card-phase-num">Phase 04</span>
+          <span class="card-level lvl-mid">Intermediate</span>
+          <div class="card-icon">✨</div>
+          <div class="card-title">Modern ES6+</div>
+          <div class="card-desc">
+            Destructuring, template literals, rest/spread, Maps, Sets, WeakMap,
+            WeakSet, and ES6 modules.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Destructuring</span>
+            <span class="card-topic">Spread/Rest</span>
+            <span class="card-topic">Map & Set</span>
+            <span class="card-topic">Modules</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase5-oop/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(167, 139, 250, 0.09)"
+        >
+          <span class="card-phase-num">Phase 05</span>
+          <span class="card-level lvl-mid">Intermediate</span>
+          <div class="card-icon">🏗️</div>
+          <div class="card-title">Object-Oriented JS</div>
+          <div class="card-desc">
+            OOP from scratch — classes, constructors, the this keyword,
+            prototypal inheritance, polymorphism, encapsulation.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Classes</span>
+            <span class="card-topic">this</span>
+            <span class="card-topic">Prototypes</span>
+            <span class="card-topic">Inheritance</span>
+            <span class="card-topic">Private</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase6-async/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(34, 211, 238, 0.07)"
+        >
+          <span class="card-phase-num">Phase 06</span>
+          <span class="card-level lvl-mid">Intermediate</span>
+          <div class="card-icon">⏳</div>
+          <div class="card-title">Async JavaScript</div>
+          <div class="card-desc">
+            The event loop, setTimeout, callbacks and callback hell, Promises,
+            chaining, and async/await mastery.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Event Loop</span>
+            <span class="card-topic">Callbacks</span>
+            <span class="card-topic">Promises</span>
+            <span class="card-topic">async/await</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase7-dom-events/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(52, 211, 153, 0.07)"
+        >
+          <span class="card-phase-num">Phase 07</span>
+          <span class="card-level lvl-mid">Intermediate</span>
+          <div class="card-icon">🌐</div>
+          <div class="card-title">DOM & Events</div>
+          <div class="card-desc">
+            The DOM tree, accessing and updating elements, event listeners,
+            bubbling, capturing, delegation, and Fetch API.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">DOM Tree</span>
+            <span class="card-topic">Events</span>
+            <span class="card-topic">Bubbling</span>
+            <span class="card-topic">Delegation</span>
+            <span class="card-topic">Fetch</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a
+          href="phases/phase8-advanced/index.html"
+          class="phase-card"
+          style="--card-glow: rgba(248, 113, 113, 0.07)"
+        >
+          <span class="card-phase-num">Phase 08</span>
+          <span class="card-level lvl-advanced">Advanced</span>
+          <div class="card-icon">🧠</div>
+          <div class="card-title">Advanced JS</div>
+          <div class="card-desc">
+            Deep closures, lexical scoping, this in all contexts,
+            call/apply/bind, error handling, and custom errors.
+          </div>
+          <div class="card-topics">
+            <span class="card-topic">Closures</span>
+            <span class="card-topic">this contexts</span>
+            <span class="card-topic">call/apply/bind</span>
+            <span class="card-topic">Error Handling</span>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

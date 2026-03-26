@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phase 6 — Async JavaScript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../shared/style.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <a class="topbar-back" href="../../index.html">← back</a>
+      <span class="topbar-phase">Phase 06</span
+      ><span class="topbar-title">Async JavaScript</span>
+      <div class="topbar-progress">
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            id="progress-fill"
+            style="width: 17%"
+          ></div>
+        </div>
+        <span id="progress-label">1/6</span>
+      </div>
+    </div>
+    <div class="phase-header">
+      <div class="phase-tag">// phase 06 · intermediate → advanced</div>
+      <h1>Async JavaScript</h1>
+      <p>
+        JavaScript is single-threaded — but it handles asynchronous operations
+        elegantly via the event loop. From raw callbacks to Promises to
+        async/await — master the complete async evolution.
+      </p>
+      <div class="topics-pill-row">
+        <span class="topic-pill">Async Intro</span
+        ><span class="topic-pill">Event Loop</span>
+        <span class="topic-pill">setTimeout & setInterval</span
+        ><span class="topic-pill">Callbacks</span>
+        <span class="topic-pill">Callback Hell</span
+        ><span class="topic-pill">Promises</span>
+        <span class="topic-pill">Promise Chaining</span
+        ><span class="topic-pill">async / await</span>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nav-btn active" onclick="show(0, 6)">
+        00 · Async Intro & Event Loop
+      </button>
+      <button class="nav-btn" onclick="show(1, 6)">
+        01 · setTimeout & setInterval
+      </button>
+      <button class="nav-btn" onclick="show(2, 6)">
+        02 · Callbacks & Hell
+      </button>
+      <button class="nav-btn" onclick="show(3, 6)">03 · Promises</button>
+      <button class="nav-btn" onclick="show(4, 6)">
+        04 · Promise Chaining
+      </button>
+      <button class="nav-btn" onclick="show(5, 6)">05 · async & await</button>
+    </div>
+    <div class="main">
+      <!-- 00 EVENT LOOP -->
+      <div class="section visible" id="s0">
+        <div class="sec-header">
+          <div class="sec-num">// 00</div>
+          <div class="sec-title">Async Programming & The Event Loop</div>
+          <div class="sec-desc">
+            JS is single-threaded — one task runs at a time. The event loop is
+            how it handles async operations without blocking.
+          </div>
+        </div>
+        <div class="concept c-purple">
+          <h4>The JavaScript runtime model</h4>
+          <p>
+            JS has one <strong>call stack</strong> — it executes one thing at a
+            time. Long tasks would block the UI. The solution:
+            <strong>async operations</strong> (timers, network, I/O) are handed
+            off to browser APIs. When done, their callbacks go into a
+            <strong>task queue</strong>. The
+            <strong>event loop</strong> constantly checks: if the call stack is
+            empty, it takes the next callback from the queue and runs it.
+            Microtasks (Promises) have a higher-priority queue that drains
+            completely before the next macrotask.
+          </p>
+        </div>
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">event_loop.js</span>
+          </div>
+          <pre><span class="cmt">// ── Execution order — the core mental model ───────────────────</span>
+
+<span class="log">console</span>.log(<span class="str">"1 — synchronous"</span>);
+
+setTimeout(() <span class="arrow">=&gt;</span> {
+  <span class="log">console</span>.log(<span class="str">"4 — macrotask (setTimeout)"</span>);
+}, <span class="num">0</span>);
+<span class="cmt-hl">// Even with 0ms delay, this goes to the task queue
+// and runs AFTER synchronous code + microtasks</span>
+
+Promise.resolve().then(() <span class="arrow">=&gt;</span> {
+  <span class="log">console</span>.log(<span class="str">"3 — microtask (Promise .then)"</span>);
+});
+<span class="cmt-hl">// Microtasks drain before any macrotask — higher priority</span>
+
+<span class="log">console</span>.log(<span class="str">"2 — synchronous"</span>);
+
+<span class="cmt">// Output order:
+// 1 — synchronous
+// 2 — synchronous
+// 3 — microtask (Promise .then)
+// 4 — macrotask (setTimeout)</span>
+
+<span class="cmt">// ── Why this matters ──────────────────────────────────────────</span>
+<span class="cmt">// Microtasks = Promise .then/.catch, queueMicrotask()
+// Macrotasks = setTimeout, setInterval, I/O, UI events
+//
+// All microtasks run to completion before the next macrotask.
+// So if you queue many microtasks in a loop, they all run first.</span>
+
+<span class="cmt">// ── Never block the call stack ────────────────────────────────</span>
+<span class="cmt">// ❌ This freezes the browser for 3 seconds</span>
+<span class="kw">function</span> <span class="fn">blockingWork</span>() {
+  <span class="kw">const</span> end <span class="op">=</span> Date.now() <span class="op">+</span> <span class="num">3000</span>;
+  <span class="kw">while</span> (Date.now() <span class="op">&lt;</span> end) {}  <span class="cmt-hl">// spin-wait — BAD</span>
+}
+
+<span class="cmt">// ✅ Break work into async chunks instead</span>
+<span class="kw">async function</span> <span class="fn">chunkedWork</span>(items) {
+  <span class="kw">for</span> (<span class="kw">const</span> item <span class="kw">of</span> items) {
+    processItem(item);
+    <span class="kw">await</span> <span class="kw">new</span> Promise(resolve <span class="arrow">=&gt;</span> setTimeout(resolve, <span class="num">0</span>));
+    <span class="cmt-hl">// ↑ yield to event loop each iteration — keeps UI responsive</span>
+  }
+}</pre>
+          <div class="output">
+            <div class="output-label">execution order</div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val">1 — synchronous</span>
+            </div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val">2 — synchronous</span>
+            </div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val" style="color: var(--cyan)"
+                >3 — microtask (Promise .then)</span
+              >
+            </div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val" style="color: var(--amber)"
+                >4 — macrotask (setTimeout)</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 01 SETTIMEOUT -->
+      <div class="section" id="s1">
+        <div class="sec-header">
+          <div class="sec-num">// 01</div>
+          <div class="sec-title">setTimeout & setInterval</div>
+          <div class="sec-desc">
+            Browser timer APIs — schedule code to run once (setTimeout) or
+            repeatedly (setInterval).
+          </div>
+        </div>
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">timers.js</span>
+          </div>
+          <pre><span class="cmt">// ── setTimeout — run once after delay ────────────────────────</span>
+<span class="kw">const</span> id1 <span class="op">=</span> setTimeout(() <span class="arrow">=&gt;</span> {
+  <span class="log">console</span>.log(<span class="str">"Runs after ~1000ms"</span>);
+}, <span class="num">1000</span>);
+
+<span class="cmt">// Cancel before it fires</span>
+clearTimeout(id1);  <span class="cmt-hl">// id1 is now cancelled — won't run</span>
+
+<span class="cmt">// Pass arguments to callback</span>
+setTimeout((name, greeting) <span class="arrow">=&gt;</span> {
+  <span class="log">console</span>.log(<span class="str">`${greeting}, ${name}!`</span>);
+}, <span class="num">500</span>, <span class="str">"Alice"</span>, <span class="str">"Hello"</span>);  <span class="cmt-hl">// extra args after delay</span>
+
+<span class="cmt">// Minimum delay is not guaranteed — it's "at least N ms"
+// Actual firing depends on call stack being empty</span>
+
+<span class="cmt">// ── setInterval — run repeatedly ─────────────────────────────</span>
+<span class="kw">let</span> count <span class="op">=</span> <span class="num">0</span>;
+<span class="kw">const</span> id2 <span class="op">=</span> setInterval(() <span class="arrow">=&gt;</span> {
+  count<span class="op">++</span>;
+  <span class="log">console</span>.log(<span class="str">`tick ${count}`</span>);
+  <span class="kw">if</span> (count <span class="op">>=</span> <span class="num">3</span>) clearInterval(id2);  <span class="cmt-hl">// stop after 3 ticks</span>
+}, <span class="num">1000</span>);
+<span class="cmt-hl">// tick 1 → tick 2 → tick 3 → stops</span>
+
+<span class="cmt">// ── setInterval problem: drift ────────────────────────────────</span>
+<span class="cmt">// If callback takes longer than interval, calls overlap/drift
+// Prefer recursive setTimeout for precise timing:</span>
+<span class="kw">function</span> <span class="fn">preciseTimer</span>() {
+  <span class="log">console</span>.log(<span class="str">"tick"</span>);
+  setTimeout(<span class="fn">preciseTimer</span>, <span class="num">1000</span>);  <span class="cmt-hl">// next tick only AFTER this one finishes</span>
+}
+
+<span class="cmt">// ── Debounce — delay until user stops ────────────────────────</span>
+<span class="kw">function</span> <span class="fn">debounce</span>(fn, delay) {
+  <span class="kw">let</span> timer;
+  <span class="kw">return</span> (...args) <span class="arrow">=&gt;</span> {
+    clearTimeout(timer);
+    timer <span class="op">=</span> setTimeout(() <span class="arrow">=&gt;</span> fn(...args), delay);
+  };
+}
+<span class="kw">const</span> search <span class="op">=</span> <span class="fn">debounce</span>((query) <span class="arrow">=&gt;</span> <span class="fn">fetchResults</span>(query), <span class="num">300</span>);
+<span class="cmt-hl">// input.addEventListener("input", e => search(e.target.value))
+// Only fires 300ms after user stops typing</span>
+
+<span class="cmt">// ── Throttle — limit to once per interval ────────────────────</span>
+<span class="kw">function</span> <span class="fn">throttle</span>(fn, limit) {
+  <span class="kw">let</span> active <span class="op">=</span> <span class="bool">false</span>;
+  <span class="kw">return</span> (...args) <span class="arrow">=&gt;</span> {
+    <span class="kw">if</span> (active) <span class="kw">return</span>;
+    active <span class="op">=</span> <span class="bool">true</span>;
+    fn(...args);
+    setTimeout(() <span class="arrow">=&gt;</span> active <span class="op">=</span> <span class="bool">false</span>, limit);
+  };
+}
+<span class="cmt-hl">// window.addEventListener("scroll", throttle(onScroll, 100));
+// Max once per 100ms regardless of scroll speed</span></pre>
+        </div>
+      </div>
+
+      <!-- 02 CALLBACKS -->
+      <div class="section" id="s2">
+        <div class="sec-header">
+          <div class="sec-num">// 02</div>
+          <div class="sec-title">Callbacks & Callback Hell</div>
+          <div class="sec-desc">
+            Callbacks were the original async pattern — a function passed as an
+            argument, called when async work completes. They work but nest
+            unreadably at scale.
+          </div>
+        </div>
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">callbacks.js</span>
+          </div>
+          <pre><span class="cmt">// ── Basic callback pattern ────────────────────────────────────</span>
+<span class="kw">function</span> <span class="fn">fetchUser</span>(id, callback) {
+  setTimeout(() <span class="arrow">=&gt;</span> {
+    <span class="kw">const</span> user <span class="op">=</span> { id, name: <span class="str">"Alice"</span> };
+    callback(<span class="bool">null</span>, user);     <span class="cmt-hl">// Node.js convention: (error, result)</span>
+  }, <span class="num">500</span>);
+}
+
+<span class="fn">fetchUser</span>(<span class="num">1</span>, (err, user) <span class="arrow">=&gt;</span> {
+  <span class="kw">if</span> (err) { <span class="log">console</span>.error(err); <span class="kw">return</span>; }
+  <span class="log">console</span>.log(user.name);  <span class="cmt-hl">// "Alice"</span>
+});
+
+<span class="cmt">// ── Callback Hell (Pyramid of Doom) ──────────────────────────</span>
+<span class="cmt">// Each step depends on the previous — nesting grows forever</span>
+<span class="fn">fetchUser</span>(<span class="num">1</span>, (err, user) <span class="arrow">=&gt;</span> {
+  <span class="kw">if</span> (err) <span class="kw">return</span> handleErr(err);
+  <span class="fn">fetchPosts</span>(user.id, (err, posts) <span class="arrow">=&gt;</span> {       <span class="cmt-hl">// ← indent level 2</span>
+    <span class="kw">if</span> (err) <span class="kw">return</span> handleErr(err);
+    <span class="fn">fetchComments</span>(posts[<span class="num">0</span>].id, (err, comments) <span class="arrow">=&gt;</span> {  <span class="cmt-hl">// ← level 3</span>
+      <span class="kw">if</span> (err) <span class="kw">return</span> handleErr(err);
+      <span class="fn">fetchLikes</span>(comments[<span class="num">0</span>].id, (err, likes) <span class="arrow">=&gt;</span> {   <span class="cmt-hl">// ← level 4</span>
+        <span class="kw">if</span> (err) <span class="kw">return</span> handleErr(err);
+        <span class="log">console</span>.log(likes);  <span class="cmt-hl">// ← we finally got here</span>
+        <span class="cmt-hl">// Each level: repeated error handling, growing indentation</span>
+        <span class="cmt-hl">// Extremely hard to read, maintain, and reason about</span>
+      });
+    });
+  });
+});
+
+<span class="cmt">// ── Problems with callbacks ───────────────────────────────────</span>
+<span class="cmt">// 1. No standard error handling (each library does it differently)
+// 2. Inversion of control — you give your callback to a 3rd party
+//    they control when/if it's called, how many times, etc.
+// 3. Nesting makes control flow hard to follow
+// 4. Can't use try/catch for async errors
+// 5. Hard to run things in parallel</span>
+
+<span class="cmt">// ── Flatter callbacks (partial improvement) ───────────────────</span>
+<span class="kw">function</span> <span class="fn">handleErr</span>(err) { <span class="log">console</span>.error(err); }
+
+<span class="kw">function</span> <span class="fn">onUser</span>(err, user) {
+  <span class="kw">if</span> (err) <span class="kw">return</span> <span class="fn">handleErr</span>(err);
+  <span class="fn">fetchPosts</span>(user.id, <span class="fn">onPosts</span>);
+}
+<span class="kw">function</span> <span class="fn">onPosts</span>(err, posts) {
+  <span class="kw">if</span> (err) <span class="kw">return</span> <span class="fn">handleErr</span>(err);
+  <span class="fn">fetchComments</span>(posts[<span class="num">0</span>].id, <span class="fn">onComments</span>);
+}
+<span class="cmt-hl">// Flatter but still awkward — Promises solve this properly</span>
+<span class="fn">fetchUser</span>(<span class="num">1</span>, <span class="fn">onUser</span>);</pre>
+        </div>
+      </div>
+
+      <!-- 03 PROMISES -->
+      <div class="section" id="s3">
+        <div class="sec-header">
+          <div class="sec-num">// 03</div>
+          <div class="sec-title">JavaScript Promises</div>
+          <div class="sec-desc">
+            A Promise represents an eventual value — it wraps async operations
+            and provides a cleaner, chainable API with proper error handling.
+          </div>
+        </div>
+        <div class="concept c-cyan">
+          <h4>Promise states</h4>
+          <p>
+            A Promise is always in one of three states:<br />
+            <strong>Pending</strong> — initial state, neither fulfilled nor
+            rejected.<br />
+            <strong>Fulfilled</strong> — the operation completed successfully,
+            value available.<br />
+            <strong>Rejected</strong> — the operation failed, reason (error)
+            available.<br />
+            Once settled (fulfilled or rejected), a Promise's state never
+            changes.
+          </p>
+        </div>
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">promises.js</span>
+          </div>
+          <pre><span class="cmt">// ── Creating a Promise ────────────────────────────────────────</span>
+<span class="kw">const</span> myPromise <span class="op">=</span> <span class="kw">new</span> Promise((resolve, reject) <span class="arrow">=&gt;</span> {
+  <span class="cmt-hl">// resolve(value) — fulfil the promise with a value</span>
+  <span class="cmt-hl">// reject(reason) — reject the promise with an error</span>
+
+  <span class="kw">const</span> success <span class="op">=</span> Math.random() <span class="op">&gt;</span> <span class="num">0.5</span>;
+  setTimeout(() <span class="arrow">=&gt;</span> {
+    <span class="kw">if</span> (success) resolve(<span class="str">"Data loaded!"</span>);
+    <span class="kw">else</span>         reject(<span class="kw">new</span> Error(<span class="str">"Network failed"</span>));
+  }, <span class="num">1000</span>);
+});
+
+<span class="cmt">// ── Consuming a Promise ───────────────────────────────────────</span>
+myPromise
+  .then(value <span class="arrow">=&gt;</span> {
+    <span class="log">console</span>.log(<span class="str">"Success:"</span>, value);  <span class="cmt-hl">// runs on resolve</span>
+  })
+  .catch(err <span class="arrow">=&gt;</span> {
+    <span class="log">console</span>.error(<span class="str">"Error:"</span>, err.message);  <span class="cmt-hl">// runs on reject</span>
+  })
+  .finally(() <span class="arrow">=&gt;</span> {
+    <span class="log">console</span>.log(<span class="str">"Always runs"</span>);  <span class="cmt-hl">// cleanup — runs either way</span>
+  });
+
+<span class="cmt">// ── Wrapping callbacks in Promises ───────────────────────────</span>
+<span class="kw">function</span> <span class="fn">fetchUser</span>(id) {
+  <span class="kw">return new</span> Promise((resolve, reject) <span class="arrow">=&gt;</span> {
+    setTimeout(() <span class="arrow">=&gt;</span> {
+      <span class="kw">if</span> (id <span class="op">&lt;=</span> <span class="num">0</span>) reject(<span class="kw">new</span> Error(<span class="str">"Invalid ID"</span>));
+      <span class="kw">else</span>          resolve({ id, name: <span class="str">"Alice"</span> });
+    }, <span class="num">500</span>);
+  });
+}
+
+<span class="cmt">// ── Static Promise methods ────────────────────────────────────</span>
+
+<span class="cmt">// Promise.resolve / Promise.reject — instant settled promises</span>
+<span class="kw">const</span> instant <span class="op">=</span> Promise.resolve(<span class="str">"immediate value"</span>);
+
+<span class="cmt">// Promise.all — run in PARALLEL, wait for ALL to resolve</span>
+<span class="cmt">// Fails fast: if ANY rejects, the whole thing rejects</span>
+Promise.all([
+  <span class="fn">fetchUser</span>(<span class="num">1</span>),
+  <span class="fn">fetchUser</span>(<span class="num">2</span>),
+  <span class="fn">fetchUser</span>(<span class="num">3</span>)
+]).then(([u1, u2, u3]) <span class="arrow">=&gt;</span> {
+  <span class="log">console</span>.log(u1, u2, u3);  <span class="cmt-hl">// all three users</span>
+}).catch(err <span class="arrow">=&gt;</span> <span class="log">console</span>.error(err));
+
+<span class="cmt">// Promise.allSettled — wait for ALL, collect all results</span>
+<span class="cmt">// Does NOT fail fast — every result is captured</span>
+Promise.allSettled([
+  <span class="fn">fetchUser</span>(<span class="num">1</span>),
+  <span class="fn">fetchUser</span>(<span class="op">-</span><span class="num">1</span>),  <span class="cmt-hl">// will reject</span>
+  <span class="fn">fetchUser</span>(<span class="num">3</span>)
+]).then(results <span class="arrow">=&gt;</span> {
+  results.forEach(r <span class="arrow">=&gt;</span> {
+    <span class="kw">if</span> (r.status <span class="op">===</span> <span class="str">"fulfilled"</span>) <span class="log">console</span>.log(<span class="str">"✅"</span>, r.value);
+    <span class="kw">else</span>                             <span class="log">console</span>.log(<span class="str">"❌"</span>, r.reason.message);
+  });
+});
+
+<span class="cmt">// Promise.race — first to settle wins</span>
+Promise.race([
+  <span class="fn">fetchUser</span>(<span class="num">1</span>),
+  <span class="kw">new</span> Promise((_, reject) <span class="arrow">=&gt;</span> setTimeout(() <span class="arrow">=&gt;</span> reject(<span class="kw">new</span> Error(<span class="str">"Timeout"</span>)), <span class="num">300</span>))
+]).then(<span class="log">console</span>.log).catch(<span class="log">console</span>.error);
+
+<span class="cmt">// Promise.any — first to FULFILL wins (ignores rejections)</span>
+Promise.any([
+  Promise.reject(<span class="kw">new</span> Error(<span class="str">"fail 1"</span>)),
+  Promise.resolve(<span class="str">"success"</span>),
+  Promise.resolve(<span class="str">"also success"</span>)
+]).then(<span class="log">console</span>.log);  <span class="cmt-hl">// "success"</span></pre>
+        </div>
+      </div>
+
+      <!-- 04 PROMISE CHAINING -->
+      <div class="section" id="s4">
+        <div class="sec-header">
+          <div class="sec-num">// 04</div>
+          <div class="sec-title">Promise Chaining</div>
+          <div class="sec-desc">
+            Each <code>.then()</code> returns a new Promise — enabling flat,
+            readable chains instead of nested callbacks.
+          </div>
+        </div>
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">promise_chaining.js</span>
+          </div>
+          <pre><span class="cmt">// ── The same nested callbacks from before — now flat ──────────</span>
+<span class="fn">fetchUser</span>(<span class="num">1</span>)
+  .then(user <span class="arrow">=&gt;</span> <span class="fn">fetchPosts</span>(user.id))    <span class="cmt-hl">// return a new Promise</span>
+  .then(posts <span class="arrow">=&gt;</span> <span class="fn">fetchComments</span>(posts[<span class="num">0</span>].id))
+  .then(comments <span class="arrow">=&gt;</span> <span class="fn">fetchLikes</span>(comments[<span class="num">0</span>].id))
+  .then(likes <span class="arrow">=&gt;</span> <span class="log">console</span>.log(likes))
+  .catch(err <span class="arrow">=&gt;</span> <span class="log">console</span>.error(err));    <span class="cmt-hl">// ONE catch handles ALL errors</span>
+
+<span class="cmt">// ── Key chaining rules ────────────────────────────────────────</span>
+<span class="cmt">// 1. return a value from .then() → next .then() gets it
+// 2. return a Promise from .then() → chain waits for it to resolve
+// 3. throw inside .then() → jumps to .catch()
+// 4. return inside .catch() → recovers, resumes the chain
+// 5. .finally() doesn't receive the value — just cleans up</span>
+
+Promise.resolve(<span class="num">1</span>)
+  .then(n <span class="arrow">=&gt;</span> n <span class="op">+</span> <span class="num">1</span>)           <span class="cmt-hl">// 2 — pass value forward</span>
+  .then(n <span class="arrow">=&gt;</span> n <span class="op">*</span> <span class="num">10</span>)          <span class="cmt-hl">// 20</span>
+  .then(n <span class="arrow">=&gt;</span> { <span class="kw">throw</span> <span class="kw">new</span> Error(<span class="str">"oops"</span>); })  <span class="cmt-hl">// jumps to catch</span>
+  .catch(err <span class="arrow">=&gt;</span> {
+    <span class="log">console</span>.log(<span class="str">"Caught:"</span>, err.message);  <span class="cmt-hl">// "oops"</span>
+    <span class="kw">return</span> <span class="num">99</span>;                            <span class="cmt-hl">// recovered — chain continues</span>
+  })
+  .then(n <span class="arrow">=&gt;</span> <span class="log">console</span>.log(<span class="str">"Final:"</span>, n))  <span class="cmt-hl">// "Final: 99"</span>
+  .finally(() <span class="arrow">=&gt;</span> <span class="log">console</span>.log(<span class="str">"Done"</span>));
+
+<span class="cmt">// ── Real-world chain: fetch user → posts → render ─────────────</span>
+<span class="kw">function</span> <span class="fn">loadUserDashboard</span>(userId) {
+  <span class="kw">return</span> <span class="fn">fetchUser</span>(userId)
+    .then(user <span class="arrow">=&gt;</span> {
+      <span class="fn">renderHeader</span>(user);
+      <span class="kw">return</span> <span class="fn">fetchPosts</span>(user.id);       <span class="cmt-hl">// returns Promise — chain waits</span>
+    })
+    .then(posts <span class="arrow">=&gt;</span> {
+      <span class="fn">renderPosts</span>(posts);
+      <span class="kw">return</span> Promise.all(               <span class="cmt-hl">// parallel fetches</span>
+        posts.map(p <span class="arrow">=&gt;</span> <span class="fn">fetchComments</span>(p.id))
+      );
+    })
+    .then(allComments <span class="arrow">=&gt;</span> {
+      allComments.forEach(<span class="fn">renderComments</span>);
+    })
+    .catch(err <span class="arrow">=&gt;</span> {
+      <span class="fn">renderError</span>(err.message);
+    })
+    .finally(() <span class="arrow">=&gt;</span> {
+      <span class="fn">hideLoadingSpinner</span>();
+    });
+}</pre>
+        </div>
+      </div>
+
+      <!-- 05 ASYNC AWAIT -->
+      <div class="section" id="s5">
+        <div class="sec-header">
+          <div class="sec-num">// 05</div>
+          <div class="sec-title">async & await</div>
+          <div class="sec-desc">
+            <code>async/await</code> is syntactic sugar over Promises — it lets
+            you write asynchronous code that reads like synchronous code.
+          </div>
+        </div>
+        <div class="concept c-green">
+          <h4>async/await is Promises in disguise</h4>
+          <p>
+            <code>async</code> before a function makes it always return a
+            Promise. <code>await</code> inside an async function pauses
+            execution until a Promise settles, then returns the resolved value.
+            The function resumes from that line. Under the hood it's all still
+            the event loop and Promises — <code>await</code> is just readable
+            syntax for <code>.then()</code>.
+          </p>
+        </div>
+        <div class="code-card">
+          <div class="code-card-header">
+            <div class="dots">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <span class="file-name">async_await.js</span>
+          </div>
+          <pre><span class="cmt">// ── Basic async/await ─────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">loadUser</span>(id) {
+  <span class="kw">const</span> user <span class="op">=</span> <span class="kw">await</span> <span class="fn">fetchUser</span>(id);     <span class="cmt-hl">// pauses here, waits for Promise</span>
+  <span class="kw">const</span> posts <span class="op">=</span> <span class="kw">await</span> <span class="fn">fetchPosts</span>(user.id);  <span class="cmt-hl">// pauses again</span>
+  <span class="kw">return</span> { user, posts };
+}
+
+<span class="cmt">// async function always returns a Promise</span>
+loadUser(<span class="num">1</span>).then(<span class="log">console</span>.log);
+
+<span class="cmt">// ── Error handling with try/catch ─────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">safeFetch</span>(url) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> response <span class="op">=</span> <span class="kw">await</span> fetch(url);
+
+    <span class="kw">if</span> (<span class="op">!</span>response.ok) {
+      <span class="kw">throw</span> <span class="kw">new</span> Error(<span class="str">`HTTP error: ${response.status}`</span>);
+    }
+
+    <span class="kw">const</span> data <span class="op">=</span> <span class="kw">await</span> response.json();
+    <span class="kw">return</span> data;
+
+  } <span class="kw">catch</span> (err) {
+    <span class="log">console</span>.error(<span class="str">"Fetch failed:"</span>, err.message);
+    <span class="kw">throw</span> err;  <span class="cmt-hl">// re-throw so caller can handle too</span>
+  } <span class="kw">finally</span> {
+    <span class="fn">hideSpinner</span>();  <span class="cmt-hl">// always runs</span>
+  }
+}
+
+<span class="cmt">// ── Sequential vs Parallel ────────────────────────────────────</span>
+
+<span class="cmt">// ❌ SEQUENTIAL — runs one after the other (slow: 500ms + 500ms = 1000ms)</span>
+<span class="kw">async function</span> <span class="fn">sequential</span>() {
+  <span class="kw">const</span> user1 <span class="op">=</span> <span class="kw">await</span> <span class="fn">fetchUser</span>(<span class="num">1</span>);  <span class="cmt-hl">// waits 500ms</span>
+  <span class="kw">const</span> user2 <span class="op">=</span> <span class="kw">await</span> <span class="fn">fetchUser</span>(<span class="num">2</span>);  <span class="cmt-hl">// waits another 500ms</span>
+  <span class="kw">return</span> [user1, user2];
+}
+
+<span class="cmt">// ✅ PARALLEL — both start immediately (fast: ~500ms total)</span>
+<span class="kw">async function</span> <span class="fn">parallel</span>() {
+  <span class="kw">const</span> [user1, user2] <span class="op">=</span> <span class="kw">await</span> Promise.all([
+    <span class="fn">fetchUser</span>(<span class="num">1</span>),
+    <span class="fn">fetchUser</span>(<span class="num">2</span>)
+  ]);
+  <span class="kw">return</span> [user1, user2];
+}
+
+<span class="cmt">// ── await in loops ────────────────────────────────────────────</span>
+
+<span class="cmt">// ❌ forEach doesn't await — all run simultaneously</span>
+[<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>].forEach(<span class="kw">async</span> id <span class="arrow">=&gt;</span> {
+  <span class="kw">const</span> user <span class="op">=</span> <span class="kw">await</span> <span class="fn">fetchUser</span>(id);
+  <span class="cmt-hl">// ⚠️ forEach doesn't await these — fires all at once</span>
+});
+
+<span class="cmt">// ✅ for...of — properly awaits each iteration</span>
+<span class="kw">async function</span> <span class="fn">processInOrder</span>(ids) {
+  <span class="kw">for</span> (<span class="kw">const</span> id <span class="kw">of</span> ids) {
+    <span class="kw">const</span> user <span class="op">=</span> <span class="kw">await</span> <span class="fn">fetchUser</span>(id);  <span class="cmt-hl">// awaits each in sequence</span>
+    <span class="fn">process</span>(user);
+  }
+}
+
+<span class="cmt">// ✅ Promise.all in loop — parallel but collected</span>
+<span class="kw">async function</span> <span class="fn">processAll</span>(ids) {
+  <span class="kw">const</span> users <span class="op">=</span> <span class="kw">await</span> Promise.all(ids.map(<span class="fn">fetchUser</span>));
+  users.forEach(<span class="fn">process</span>);
+}
+
+<span class="cmt">// ── Top-level await (ES2022 — in modules only) ────────────────</span>
+<span class="cmt">// const data = await fetchSomething();  // works at top level in .mjs</span>
+
+<span class="cmt">// ── async/await is .then() in disguise ───────────────────────
+//
+//   async function fn() {         // same as:
+//     const x = await p;          // p.then(x => {
+//     return x + 1;               //   return x + 1;
+//   }                             // })
+//</span></pre>
+          <div class="output">
+            <div class="output-label">the evolution summary</div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val"
+                >Callbacks → works but nests unreadably, no error standard</span
+              >
+            </div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val"
+                >Promises → flat chains, single .catch, combinators</span
+              >
+            </div>
+            <div class="out-line">
+              <span class="out-ok">▶</span
+              ><span class="out-val"
+                >async/await → reads like sync code, try/catch works
+                naturally</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+      </div>
+    </div>
+    <script src="../../shared/nav.js"></script>
+  </body>
+</html>

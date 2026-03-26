@@ -29,7 +29,7 @@ This assignment involves creating a **pixel-perfect clone of the Mintlify.com we
 ## 🌐 Live Preview
 
 🔗 **Hosted Page:**
-👉 [https://web-dev-cohort26.vercel.app/building-blocks/assignments/documentation-website-mintlify/index.html]
+👉 [https://web-dev-cohort26.vercel.app/03-building-blocks/assignments/documentation-website-mintlify/index.html]
 
 ---
 
@@ -54,15 +54,15 @@ This assignment focuses on:
 
 ## 📋 Sections Implemented
 
-| Section | Description |
-|---------|-------------|
-| Header | Fixed nav with logo, dropdowns, Contact Sales & Start for free buttons |
-| Hero | Headline with animated documentation preview, email signup form |
-| Trusted By | 8 company logos (Anthropic, X, Microsoft, HubSpot, Coinbase, PayPal, Perplexity, Lovable) |
-| Feature Highlight | 3 AI-focused feature cards (LLMs.txt & MCP, Agent, Assistant) |
-| Enterprise | Enterprise features with customer story card (Anthropic case study) |
-| Customers Carousel | Interactive cards showcasing customer stories with background images |
-| Footer | Multi-column links, social media icons, copyright |
+| Section            | Description                                                                               |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| Header             | Fixed nav with logo, dropdowns, Contact Sales & Start for free buttons                    |
+| Hero               | Headline with animated documentation preview, email signup form                           |
+| Trusted By         | 8 company logos (Anthropic, X, Microsoft, HubSpot, Coinbase, PayPal, Perplexity, Lovable) |
+| Feature Highlight  | 3 AI-focused feature cards (LLMs.txt & MCP, Agent, Assistant)                             |
+| Enterprise         | Enterprise features with customer story card (Anthropic case study)                       |
+| Customers Carousel | Interactive cards showcasing customer stories with background images                      |
+| Footer             | Multi-column links, social media icons, copyright                                         |
 
 ---
 
