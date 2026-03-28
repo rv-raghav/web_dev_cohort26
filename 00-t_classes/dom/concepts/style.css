@@ -1,0 +1,15 @@
+body {
+    background: black;
+}
+
+.red {
+    color: red;
+}
+
+.button {
+    background: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
