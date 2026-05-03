@@ -1,0 +1,118 @@
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 55%, #ffffff 100%);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.app-content {
+  width: min(1200px, 100%);
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.app-title {
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  color: #1e293b;
+  margin-bottom: 16px;
+  line-height: 1.05;
+}
+
+.app-subtitle {
+  color: #475569;
+  font-size: 1.05rem;
+  max-width: 780px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.quote-card {
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.quote-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.14);
+}
+
+.quote-text {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #0f172a;
+  margin: 0;
+}
+
+.quote-author {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.quote-author-name {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.quote-meta {
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+.quote-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quote-tag {
+  background: #e2e8f0;
+  color: #334155;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.loading-row,
+.empty-row {
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 36px;
+  text-align: center;
+  color: #475569;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 24px 16px;
+  }
+
+  .quote-card {
+    padding: 22px;
+  }
+}
