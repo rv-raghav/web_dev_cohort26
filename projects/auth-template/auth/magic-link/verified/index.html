@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Email verified successfully">
+    <title>Email Verified | Auth Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo/logo_lyst1760200411464.png">
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="font-sans bg-slate-950 text-slate-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="auth-shell">
+
+        <!-- Left Panel - Branding (Hidden on mobile) -->
+        <div class="auth-brand-panel grid-pattern">
+            <div class="auth-brand-panel-content">
+                <a href="/" class="block mb-6">
+                    <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="200" height="60">
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Welcome back! Your identity has been verified.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Panel - Success State -->
+        <div class="auth-form-panel">
+
+            <!-- Mobile Logo -->
+            <div class="mobile-logo-row mb-8 lg:hidden">
+                <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="180" height="54">
+            </div>
+
+            <!-- Content Container -->
+            <div class="auth-form-content text-center">
+
+                <!-- Success Animation -->
+                <div class="mb-8">
+                    <div
+                        class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-green-500/10 checkmark-circle">
+                        <img src="/assets/icons/check-circle.svg" alt="" class="w-12 h-12">
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="mb-8">
+                    <p class="page-kicker mb-2">Verification Complete</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3">Email Verified!</h1>
+                    <p class="text-slate-400 text-sm">
+                        Your email has been successfully verified. You can now access your account.
+                    </p>
+                </div>
+
+                <div class="panel-card space-y-5">
+                    <!-- Success Alert -->
+                    <div class="alert alert-success animate-fade-in">
+                        <div class="flex items-center justify-center gap-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Redirecting to dashboard in <span id="countdown" class="font-semibold" aria-live="polite">5</span>
+                                seconds...</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <a href="/" class="btn btn-primary w-full">
+                        Continue to Dashboard
+                    </a>
+
+                    <!-- Help Text -->
+                    <p class="text-sm text-slate-500">
+                        Having trouble?
+                        <a href="#" class="link">Contact support</a>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Countdown Script -->
+    <script>
+        let seconds = 5;
+        const countdownEl = document.getElementById('countdown');
+
+        const interval = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+
+            if (seconds <= 0) {
+                clearInterval(interval);
+                // Redirect (would be to dashboard in real app)
+                // window.location.href = '/';
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>

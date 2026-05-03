@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage active sessions and devices">
+    <title>Session Management | Auth Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo/logo_lyst1760200411464.png">
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="font-sans bg-slate-950 text-slate-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="app-shell">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-inner app-header-inner--md">
+                <a href="/">
+                    <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="120" height="36" class="w-24 sm:w-28 h-auto">
+                </a>
+                <nav class="app-nav">
+                    <a href="/account/security" class="app-nav-link">
+                        Security
+                    </a>
+                    <a href="/login" class="btn btn-ghost header-btn text-xs sm:text-sm px-3 py-2">
+                        Sign Out
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-wrap page-wrap--lg">
+
+            <!-- Page Header -->
+            <div class="mb-8">
+                <p class="page-kicker mb-2">Account Center</p>
+                <h1 class="text-2xl font-bold text-white mb-2">Active Sessions</h1>
+                <p class="text-slate-400 text-sm">Manage your active sessions and sign out from other devices</p>
+            </div>
+
+            <!-- Success Alert (show after signing out) -->
+            <!-- 
+            <div class="alert alert-success mb-6 animate-fade-in">
+                Session successfully terminated.
+            </div>
+            -->
+
+            <!-- Current Session -->
+            <section class="mb-8">
+                <h2 class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Current Session</h2>
+
+                <div class="session-card current">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <!-- Device Icon -->
+                            <div
+                                class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                                <img src="/assets/icons/desktop.svg" alt="" class="w-6 h-6">
+                            </div>
+
+                            <!-- Session Details -->
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 mb-1">
+                                    <h3 class="font-medium text-white">Chrome on Windows</h3>
+                                    <span
+                                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                                        This device
+                                    </span>
+                                </div>
+                                <p class="text-sm text-slate-400 mb-1">Mumbai, India</p>
+                                <p class="text-xs text-slate-500">Active now • IP: 192.168.1.***</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other Sessions -->
+            <section class="mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                    <h2 class="text-sm font-medium text-slate-400 uppercase tracking-wider">Other Sessions</h2>
+                    <button class="btn btn-danger text-xs px-3 py-1.5 w-full sm:w-auto">
+                        Sign Out All Other Sessions
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Session 1 -->
+                    <div class="session-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                            <div class="flex items-start gap-4">
+                                <!-- Mobile Device Icon -->
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <!-- Session Details -->
+                                <div>
+                                    <h3 class="font-medium text-white mb-1">Safari on iPhone</h3>
+                                    <p class="text-sm text-slate-400 mb-1">Delhi, India</p>
+                                    <p class="text-xs text-slate-500">Last active 2 hours ago • IP: 192.168.2.***</p>
+                                </div>
+                            </div>
+
+                            <button
+                                class="btn btn-ghost text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 px-3 py-1.5 w-full sm:w-auto">
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Session 2 -->
+                    <div class="session-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                            <div class="flex items-start gap-4">
+                                <!-- Laptop Icon -->
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <!-- Session Details -->
+                                <div>
+                                    <h3 class="font-medium text-white mb-1">Firefox on MacOS</h3>
+                                    <p class="text-sm text-slate-400 mb-1">Bangalore, India</p>
+                                    <p class="text-xs text-slate-500">Last active 1 day ago • IP: 192.168.3.***</p>
+                                </div>
+                            </div>
+
+                            <button
+                                class="btn btn-ghost text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 px-3 py-1.5 w-full sm:w-auto">
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Session 3 -->
+                    <div class="session-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                            <div class="flex items-start gap-4">
+                                <!-- Tablet Icon -->
+                                <div
+                                    class="w-12 h-12 rounded-lg bg-slate-700 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <!-- Session Details -->
+                                <div>
+                                    <h3 class="font-medium text-white mb-1">Chrome on Android Tablet</h3>
+                                    <p class="text-sm text-slate-400 mb-1">Mumbai, India</p>
+                                    <p class="text-xs text-slate-500">Last active 3 days ago • IP: 192.168.4.***</p>
+                                </div>
+                            </div>
+
+                            <button
+                                class="btn btn-ghost text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 px-3 py-1.5 w-full sm:w-auto">
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Empty State (show when no other sessions) -->
+            <!-- 
+            <section class="text-center py-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-800 mb-4">
+                    <svg class="w-8 h-8 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-white mb-2">No other active sessions</h3>
+                <p class="text-sm text-slate-400">You're only signed in on this device.</p>
+            </section>
+            -->
+
+            <!-- Security Tips -->
+            <section class="panel-card">
+                <h2 class="text-lg font-semibold text-white mb-4">Security Tips</h2>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-orange-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Sign out from devices you don't recognize or no longer use.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-orange-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>If you see suspicious activity, change your password immediately.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-orange-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>Enable two-factor authentication for enhanced security.</span>
+                    </li>
+                </ul>
+
+                <div class="mt-6 pt-4 border-t border-slate-800">
+                    <a href="/account/security" class="link text-sm inline-flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Go to Security Settings
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer app-footer--sm">
+            <div class="app-footer-inner app-footer-inner--md text-center text-sm text-slate-500">
+                © 2026 ChaiCode Registry. All rights reserved.
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

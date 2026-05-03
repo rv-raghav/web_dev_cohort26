@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Set up two-factor authentication">
+    <title>Authenticator Setup | Auth Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo/logo_lyst1760200411464.png">
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="font-sans bg-slate-950 text-slate-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="app-shell">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-header-inner app-header-inner--md">
+                <a href="/">
+                    <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="120" height="36" class="w-24 sm:w-28 h-auto">
+                </a>
+                <a href="/account/security" class="btn btn-ghost header-btn text-xs sm:text-sm px-3 py-2 inline-flex items-center gap-2">
+                    <img src="/assets/icons/chevron-left.svg" alt="" class="w-4 h-4">
+                    <span class="sm:hidden">Back</span>
+                    <span class="hidden sm:inline">Back to Security</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-wrap page-wrap--md">
+
+            <!-- Page Header -->
+            <div class="text-center mb-8">
+                <p class="page-kicker mb-2">Security Setup</p>
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-400/10 mb-4">
+                    <img src="/assets/icons/lock.svg" alt="" class="w-8 h-8 text-orange-400">
+                </div>
+                <h1 class="text-2xl font-bold text-white mb-2">Set Up Authenticator App</h1>
+                <p class="text-slate-400 text-sm">Secure your account with two-factor authentication</p>
+            </div>
+
+            <!-- Step Progress -->
+            <div class="flex items-center justify-center mb-8">
+                <div>
+                    <div class="flex items-center">
+                        <div
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-orange-400 text-slate-950 text-sm font-medium">
+                            1</div>
+                        <div class="w-16 h-0.5 bg-slate-700"></div>
+                        <div
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-700 text-slate-400 text-sm font-medium">
+                            2</div>
+                        <div class="w-16 h-0.5 bg-slate-700"></div>
+                        <div
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-700 text-slate-400 text-sm font-medium">
+                            3</div>
+                    </div>
+                    <div class="hidden sm:grid grid-cols-3 gap-6 mt-2 text-[11px] text-slate-500 text-center">
+                        <span>Scan</span>
+                        <span>Verify</span>
+                        <span>Backup</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: Scan QR Code -->
+            <section class="panel-card mb-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Step 1: Scan QR Code</h2>
+                <p class="text-sm text-slate-400 mb-6">
+                    Open your authenticator app (Google Authenticator, Authy, etc.) and scan this QR code.
+                </p>
+
+                <!-- QR Code -->
+                <div class="flex justify-center mb-6">
+                    <div class="qr-placeholder">
+                        <!-- Placeholder QR pattern -->
+                        <img src="/assets/icons/qr-placeholder.svg" alt="QR Code" class="w-40 h-40">
+                    </div>
+                </div>
+
+                <!-- Manual Entry -->
+                <div class="text-center">
+                    <p class="text-sm text-slate-400 mb-3">Can't scan? Enter this code manually:</p>
+                    <div class="inline-flex items-center gap-2 panel-card-soft">
+                        <code class="text-sm text-white font-mono tracking-wider">JBSWY3DPEHPK3PXP</code>
+                        <button type="button" class="text-orange-300 hover:text-orange-200 transition-colors"
+                            aria-label="Copy manual authenticator key"
+                            title="Copy to clipboard">
+                            <img src="/assets/icons/copy.svg" alt="" class="w-4 h-4">
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Verify Code -->
+            <section class="panel-card mb-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Step 2: Enter Verification Code</h2>
+                <p class="text-sm text-slate-400 mb-6">
+                    Enter the 6-digit code from your authenticator app to verify setup.
+                </p>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="verify-code" class="block text-sm font-medium text-slate-300 mb-2">
+                            Verification Code
+                        </label>
+                        <input type="text" id="verify-code"
+                            class="input-field focus-ring text-center text-lg tracking-widest font-mono"
+                            placeholder="000000" maxlength="6" inputmode="numeric" pattern="[0-9]*">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-full">
+                        Verify and Enable 2FA
+                    </button>
+                </form>
+            </section>
+
+            <!-- Step 3: Save Backup Codes -->
+            <section class="panel-card mb-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Step 3: Save Backup Codes</h2>
+                <p class="text-sm text-slate-400 mb-6">
+                    Save these backup codes in a secure place. You can use them to access your account if you lose your
+                    authenticator.
+                </p>
+
+                <div class="alert alert-warning mb-6">
+                    <div class="flex items-start gap-3">
+                        <img src="/assets/icons/warning.svg" alt="" class="w-5 h-5 shrink-0 mt-0.5">
+                        <span class="text-sm">Each code can only be used once. Store them securely!</span>
+                    </div>
+                </div>
+
+                <!-- Backup Codes Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    <div class="panel-card-soft text-center">
+                        <code class="text-sm text-white font-mono">ABCD-1234-EFGH</code>
+                    </div>
+                    <div class="panel-card-soft text-center">
+                        <code class="text-sm text-white font-mono">IJKL-5678-MNOP</code>
+                    </div>
+                    <div class="panel-card-soft text-center">
+                        <code class="text-sm text-white font-mono">QRST-9012-UVWX</code>
+                    </div>
+                    <div class="panel-card-soft text-center">
+                        <code class="text-sm text-white font-mono">YZAB-3456-CDEF</code>
+                    </div>
+                    <div class="panel-card-soft text-center">
+                        <code class="text-sm text-white font-mono">GHIJ-7890-KLMN</code>
+                    </div>
+                    <div class="panel-card-soft text-center">
+                        <code class="text-sm text-white font-mono">OPQR-1357-STUV</code>
+                    </div>
+                </div>
+
+                <!-- Download/Copy Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button type="button" class="btn btn-ghost flex-1 inline-flex items-center justify-center gap-2">
+                        <img src="/assets/icons/download.svg" alt="" class="w-4 h-4">
+                        Download Codes
+                    </button>
+                    <button type="button" class="btn btn-ghost flex-1 inline-flex items-center justify-center gap-2">
+                        <img src="/assets/icons/copy.svg" alt="" class="w-4 h-4">
+                        Copy All Codes
+                    </button>
+                </div>
+            </section>
+
+            <!-- Cancel Link -->
+            <div class="text-center">
+                <a href="/account/security" class="link text-sm">Cancel and go back</a>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer app-footer--sm">
+            <div class="app-footer-inner app-footer-inner--md text-center text-sm text-slate-500">
+                © 2026 ChaiCode Registry. All rights reserved.
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

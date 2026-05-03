@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Verify your identity with OTP">
+    <title>OTP Verification | Auth Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo/logo_lyst1760200411464.png">
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="font-sans bg-slate-950 text-slate-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="auth-shell">
+
+        <!-- Left Panel - Branding (Hidden on mobile) -->
+        <div class="auth-brand-panel grid-pattern">
+            <div class="auth-brand-panel-content">
+                <a href="/" class="block mb-6">
+                    <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="200" height="60">
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Enter the verification code we sent to confirm your identity.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Panel - OTP Form -->
+        <div class="auth-form-panel">
+
+            <!-- Back Button -->
+            <div class="auth-top-row">
+                <a href="/login" class="btn btn-ghost auth-back-link">
+                    <img src="/assets/icons/chevron-left.svg" alt="" class="w-4 h-4">
+                    Back to sign in
+                </a>
+            </div>
+
+            <!-- Mobile Logo -->
+            <div class="mobile-logo-row mb-8 lg:hidden">
+                <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="180" height="54">
+            </div>
+
+            <!-- Form Container -->
+            <div class="auth-form-content">
+
+                <!-- Header -->
+                <div class="mb-8 text-center">
+                    <p class="page-kicker mb-2">Verification</p>
+                    <!-- Email Icon -->
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-400/10 mb-6">
+                        <img src="/assets/icons/mail.svg" alt="" class="w-8 h-8">
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">Enter Verification Code</h1>
+                    <p class="text-slate-400 text-sm">
+                        We've sent a 6-digit code to<br>
+                        <span class="text-white font-medium">user@example.com</span>
+                    </p>
+                </div>
+
+                <!-- Error Alert -->
+                <!-- 
+                <div class="alert alert-error mb-6 animate-fade-in text-center">
+                    Invalid code. Please check and try again.
+                </div>
+                -->
+
+                <!-- OTP Form -->
+                <form action="#" method="POST" class="space-y-8">
+
+                    <div class="panel-card text-center space-y-4">
+                        <p class="text-xs uppercase tracking-wider text-slate-500">6-digit code</p>
+
+                        <!-- OTP Input Boxes -->
+                        <div class="flex justify-center gap-2 sm:gap-3 px-1">
+                            <input type="text" maxlength="1" class="otp-input focus-ring" inputmode="numeric"
+                                autocomplete="one-time-code" aria-label="OTP digit 1" pattern="[0-9]*" required>
+                            <input type="text" maxlength="1" class="otp-input focus-ring" inputmode="numeric"
+                                aria-label="OTP digit 2" pattern="[0-9]*" required>
+                            <input type="text" maxlength="1" class="otp-input focus-ring" inputmode="numeric"
+                                aria-label="OTP digit 3" pattern="[0-9]*" required>
+                            <input type="text" maxlength="1" class="otp-input focus-ring" inputmode="numeric"
+                                aria-label="OTP digit 4" pattern="[0-9]*" required>
+                            <input type="text" maxlength="1" class="otp-input focus-ring" inputmode="numeric"
+                                aria-label="OTP digit 5" pattern="[0-9]*" required>
+                            <input type="text" maxlength="1" class="otp-input focus-ring" inputmode="numeric"
+                                aria-label="OTP digit 6" pattern="[0-9]*" required>
+                        </div>
+
+                        <p class="text-xs text-slate-500">Code expires in 10 minutes.</p>
+                    </div>
+
+                    <!-- Verify Button -->
+                    <button type="submit" class="btn btn-primary w-full">
+                        Verify Code
+                    </button>
+
+                    <!-- Resend Code -->
+                    <div class="panel-card text-center space-y-3">
+                        <p class="text-sm text-slate-400">
+                            Didn't receive the code?
+                        </p>
+
+                        <!-- Resend button with timer -->
+                        <button type="button" class="link text-sm font-medium" id="resend-btn">
+                            Resend code
+                        </button>
+
+                        <!-- Timer state (show when waiting) -->
+                        <!-- 
+                        <p class="text-sm text-slate-500">
+                            Resend code in <span class="text-white font-medium">00:45</span>
+                        </p>
+                        -->
+
+                        <div class="pt-4">
+                            <p class="text-sm text-slate-500">— or —</p>
+                        </div>
+
+                        <a href="/auth/magic-link" class="link text-sm">
+                            Use magic link instead
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- OTP Input Auto-Focus Script -->
+    <script>
+        const inputs = document.querySelectorAll('.otp-input');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+                // Add filled class for styling
+                if (e.target.value) {
+                    e.target.classList.add('filled');
+                } else {
+                    e.target.classList.remove('filled');
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+
+            // Only allow numbers
+            input.addEventListener('beforeinput', (e) => {
+                if (e.data && !/^\d$/.test(e.data)) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // Focus first input on load
+        inputs[0].focus();
+    </script>
+
+</body>
+
+</html>

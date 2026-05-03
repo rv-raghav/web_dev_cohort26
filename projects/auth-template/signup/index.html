@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a new account">
+    <title>Sign Up | Auth Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo/logo_lyst1760200411464.png">
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="font-sans bg-slate-950 text-slate-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="auth-shell">
+
+        <!-- Left Panel - Branding (Hidden on mobile) -->
+        <div class="auth-brand-panel grid-pattern">
+            <div class="auth-brand-panel-content">
+                <a href="/" class="block mb-6">
+                    <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="200" height="60">
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Join thousands of users who trust our platform for secure authentication.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Panel - Sign Up Form -->
+        <div class="auth-form-panel overflow-y-auto">
+
+            <!-- Mobile Logo -->
+            <div class="mobile-logo-row mb-8 lg:hidden">
+                <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="180" height="54">
+            </div>
+
+            <!-- Form Container -->
+            <div class="auth-form-content">
+
+                <!-- Header -->
+                <div class="mb-8">
+                    <p class="page-kicker mb-2">Get Started</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2">Create an Account</h1>
+                    <p class="text-slate-400 text-sm">Fill in your details to get started</p>
+                </div>
+
+                <!-- Error Alert (hidden by default) -->
+                <!-- 
+                <div class="alert alert-error mb-6 animate-fade-in">
+                    An account with this email already exists.
+                </div>
+                -->
+
+                <!-- Sign Up Form -->
+                <form action="#" method="POST" class="space-y-5">
+
+                    <!-- Full Name Field -->
+                    <div>
+                        <label for="fullname" class="block text-sm font-medium text-slate-300 mb-2">
+                            Full Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="fullname" name="fullname" class="input-field focus-ring"
+                            placeholder="John Doe" required autocomplete="name">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-2">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" class="input-field focus-ring"
+                            placeholder="you@example.com" required autocomplete="email">
+                    </div>
+
+                    <!-- Phone Number Field (Optional) -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-slate-300 mb-2">
+                            Phone Number <span class="text-slate-500">(optional)</span>
+                        </label>
+                        <input type="tel" id="phone" name="phone" class="input-field focus-ring"
+                            placeholder="+1 (555) 000-0000" autocomplete="tel">
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-slate-300 mb-2">
+                            Password <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <input type="password" id="password" name="password" class="input-field focus-ring pr-12"
+                                placeholder="Create a strong password" required autocomplete="new-password"
+                                minlength="8">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility"
+                                onclick="togglePassword('password')">
+                                <img src="/assets/icons/eye.svg" alt="" class="w-5 h-5">
+                            </button>
+                        </div>
+                        <p class="form-hint">
+                            Minimum 8 characters with uppercase, lowercase, and number
+                        </p>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div>
+                        <label for="confirm-password" class="block text-sm font-medium text-slate-300 mb-2">
+                            Confirm Password <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <input type="password" id="confirm-password" name="confirm-password"
+                                class="input-field focus-ring pr-12" placeholder="Re-enter your password" required
+                                autocomplete="new-password">
+                            <button type="button" class="password-toggle" aria-label="Toggle password visibility"
+                                onclick="togglePassword('confirm-password')">
+                                <img src="/assets/icons/eye.svg" alt="" class="w-5 h-5">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="flex items-start gap-3">
+                        <input type="checkbox" id="terms" name="terms"
+                            class="mt-1 w-4 h-4 accent-orange-400 cursor-pointer" required>
+                        <label for="terms" class="text-sm text-slate-400 cursor-pointer">
+                            I agree to the
+                            <a href="#" class="link">Terms of Service</a>
+                            and
+                            <a href="#" class="link">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary w-full">
+                        Create Account
+                    </button>
+
+                    <div class="panel-card space-y-4">
+                        <!-- Divider -->
+                        <div class="divider">or sign up with</div>
+
+                        <!-- OAuth Buttons -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Google -->
+                            <button type="button" class="btn btn-oauth">
+                                <img src="/assets/icons/google.svg" alt="Google" class="w-5 h-5">
+                                <span>Google</span>
+                            </button>
+
+                            <!-- GitHub -->
+                            <button type="button" class="btn btn-oauth">
+                                <img src="/assets/icons/github.svg" alt="GitHub" class="w-5 h-5">
+                                <span>GitHub</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <!-- Sign In Link -->
+                <p class="mt-8 text-center text-sm text-slate-400">
+                    Already have an account?
+                    <a href="/login" class="link font-medium">Sign in</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Minimal JS for password toggle -->
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+
+</body>
+
+</html>

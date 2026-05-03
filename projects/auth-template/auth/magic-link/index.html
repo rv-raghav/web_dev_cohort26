@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Check your email for magic link">
+    <title>Magic Link Sent | Auth Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/logo/logo_lyst1760200411464.png">
+
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (compiled) -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="font-sans bg-slate-950 text-slate-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="auth-shell">
+
+        <!-- Left Panel - Branding (Hidden on mobile) -->
+        <div class="auth-brand-panel grid-pattern">
+            <div class="auth-brand-panel-content">
+                <a href="/" class="block mb-6">
+                    <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="200" height="60">
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Secure, passwordless authentication. Just one click to sign in.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Panel - Magic Link Sent -->
+        <div class="auth-form-panel">
+
+            <!-- Back Button -->
+            <div class="auth-top-row">
+                <a href="/login" class="btn btn-ghost auth-back-link">
+                    <img src="/assets/icons/chevron-left.svg" alt="" class="w-4 h-4">
+                    Back to sign in
+                </a>
+            </div>
+
+            <!-- Mobile Logo -->
+            <div class="mobile-logo-row mb-8 lg:hidden">
+                <img src="/assets/logo/logo_lyst1760200411464.png" alt="Logo" width="180" height="54">
+            </div>
+
+            <!-- Content Container -->
+            <div class="auth-form-content text-center">
+
+                <!-- Email Sent Illustration -->
+                <div class="mb-8">
+                    <p class="page-kicker mb-2">Passwordless Sign In</p>
+                    <div
+                        class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-orange-400/10 mb-6 animate-pulse">
+                        <img src="/assets/icons/mail-open.svg" alt="" class="w-12 h-12">
+                    </div>
+
+                    <h1 class="text-2xl sm:text-3xl font-bold text-white mb-3">Check Your Email</h1>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        We've sent a magic link to<br>
+                        <span class="text-white font-medium">user@example.com</span>
+                    </p>
+                </div>
+
+                <div class="inline-flex items-center justify-center mx-auto mb-6 px-3 py-1 rounded-full border border-orange-400/25 bg-orange-400/10 text-xs text-orange-200">
+                    Link valid for 15 minutes
+                </div>
+
+                <!-- Instructions -->
+                <div class="panel-card mb-8">
+                    <h3 class="font-medium text-white mb-4">What to do next:</h3>
+                    <ol class="text-left text-sm text-slate-400 space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="shrink-0 w-6 h-6 rounded-full bg-orange-400/20 text-orange-300 text-xs flex items-center justify-center font-medium">1</span>
+                            <span>Open your email inbox</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="shrink-0 w-6 h-6 rounded-full bg-orange-400/20 text-orange-300 text-xs flex items-center justify-center font-medium">2</span>
+                            <span>Look for an email from ChaiCode Registry</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span
+                                class="shrink-0 w-6 h-6 rounded-full bg-orange-400/20 text-orange-300 text-xs flex items-center justify-center font-medium">3</span>
+                            <span>Click the magic link to sign in</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Alert Info -->
+                <div class="alert alert-info mb-8 text-left">
+                    <div class="flex items-start gap-3">
+                        <img src="/assets/icons/info.svg" alt="" class="w-5 h-5 shrink-0 mt-0.5">
+                        <span class="text-sm">The link will expire in 15 minutes. Check your spam folder if you don't
+                            see it.</span>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="panel-card text-center space-y-4">
+                    <p class="text-sm text-slate-400">
+                        Didn't receive the email?
+                    </p>
+
+                    <button type="button" class="btn btn-primary w-full">
+                        Resend Magic Link
+                    </button>
+
+                    <div class="text-sm text-slate-500">— or —</div>
+
+                    <a href="/auth/verify" class="link text-sm">
+                        Use OTP verification instead
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
