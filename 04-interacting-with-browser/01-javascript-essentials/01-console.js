@@ -1,35 +1,39 @@
-const clue1 = 'Muddy footprint near the window';
-const clue2 = 'Broken vase on the floor';
+const clue1 = "Muddy footprint near the window";
+const clue2 = "Broken glass on the table";
 
-console.log('Clue 1:', clue1);
-console.log('Clue 2:', clue2);
+console.log("Clue found: ", clue1);
+console.log("Clue found: ", clue2);
 
-const suspectName = 'John Doe';
-const suspectAge = 35;
+const suspectName = "Dipesh";
+const suspectAge = 20;
+console.log("Suspect: ", suspectName, "| Age: ", suspectAge);
 
-console.log('Suspect Name:', suspectName, '| Suspect Age:', suspectAge);
-
-console.warn('Warning: The suspect has a history of theft!');
-console.error('Error: The suspect was seen fleeing the scene!');
+console.warn("Warning: Fingerprint evedence detected");
+console.error("Warning: Fingerprint evedence detected");
 
 const evidenceLog = [
-  { id: 1, item: 'Muddy footprint', location: 'Near the window' },
-  { id: 2, item: 'Broken vase', location: 'On the floor' },
-]; // Array of Objects
+  { id: 1, item: "Muddy footprint", location: "Window sill" },
+  { id: 2, item: "Broken glass", location: "Living room" },
+  { id: 3, item: "Red fiber strand", location: "Door handle" },
+];
 
-console.table(evidenceLog); // When we have array of objects, we can use console.table to display it in a tabular format
+console.table(evidenceLog);
 
-console.group('Group Starts') // We can use console.group to group related logs together, and console.groupEnd to end the group. This helps in organizing the logs and making them more readable.
-console.log('This is inside the group');
-console.log('This is also inside the group');
-console.groupEnd('Group Ends')
+console.group("Groupd starts");
+console.log("My log 1");
+console.log("My log 2");
+console.log("My log 3");
+console.groupEnd();
 
-console.time("Time starts now") 
+// console.time("time starts now");
 
-let dnaMatches = 0;
-for (let i = 0; i<1000000; i++) {
-    dnaMatches++
-}
-console.timeEnd("Time ends now") // We can use console.time and console.timeEnd to measure the time taken by a block of code to execute. This is useful for performance testing and optimization.
+// let dnaMatches = 0;
+// for (let i = 0; i < 1_000_000; i++) {
+//   dnaMatches++;
+// }
+// console.timeEnd();
 
-console.count("Chaicode") // We can use console.count to count the number of times a particular string is logged. This is useful for tracking the frequency of certain events or actions in our code.
+console.log("Chaicode");
+console.log("Chaicode");
+console.log("Chaicode");
+console.log("Chaicode");

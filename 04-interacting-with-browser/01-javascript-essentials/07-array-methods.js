@@ -12,10 +12,10 @@ const myData = orders.forEach((order, index) => {
 // console.log(myData);
 //
 const receiptLines = orders.map((o) => `${o.dish}: $${o.price * o.qty}`);
-console.log(receiptLines); // map always return a new array
+console.log(receiptLines);
 
 const spicyOrders = orders.filter((o) => o.spicy);
-console.log(spicyOrders); // returns only the spicy orders in array of objects
+console.log(spicyOrders);
 
 const totalRevenue = orders.reduce((sum, order) => {
   return sum + order.qty * order.price;
@@ -48,7 +48,7 @@ const kitchenOrders = [
   { dish: "Ghost Pepper Soup", price: 15, spicy: true, qty: 1 },
 ];
 
-// data | (v1=true, v2=false, v3=true)
+data | (v1=true, v2=false, v3=true)
 
 const mildReport = kitchenOrders
   .filter((order) => !order.spicy)

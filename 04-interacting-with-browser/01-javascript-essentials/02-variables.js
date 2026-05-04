@@ -1,44 +1,43 @@
-var shipName = 'The Amber';
-console.log(shipName);
-shipName = 'The Black Pearl'; // We can reassign a new value to a variable declared with var
+var shipName = "The Amber";
+console.log("Shipname: ", shipName);
 
-let crewCount = 20;
-console.log(crewCount);
-crewCount = 25; // We can reassign a new value to a variable declared with let
+let crewCount = 12;
+console.log("crew count: ", crewCount);
+crewCount = 14;
 
-const captainName = 'Jack Sparrow';
-console.log(captainName);
-// captainName = "Will Turner"; // This will throw an error because we cannot reassign a new value to a variable declared with const
+const captainName = "Jack Sparrow";
+console.log("Captain Name: ", captainName);
+// captainName = "Dipesh";
 
 if (true) {
-  var leakyTreasure = 'Gold Coins'; // This variable is declared with var, so it is function-scoped and can be accessed outside the block
+  var leakyTreasure = "Gold coins";
 }
 
-console.log(leakyTreasure); // This will log "Gold Coins" because var is function-scoped, not block-scoped
-
-for (var i = 0; i < 3; i++) {
+for (var i = 0; i < 10; i++) {
+  //
+}
+for (let j = 0; i < 10; i++) {
   //
 }
 
-for (let j = 0; j < 3; j++) {
-  //
-}
+console.log(leakyTreasure);
+
+let shipSpeed = 22;
+let _privatelog = "secret";
+let MONGODB_URI = "";
+let name = "hitesh";
 
 const treasureChest = {
   gold: 100,
-  silver: 50,
-  jewels: 25,
-}; // This is an object declared with const. We cannot reassign treasureChest to a new object, but we can modify the properties of the existing object.
+  rubies: 50,
+  maps: 2,
+};
 
-treasureChest.gold = 150; // This is allowed because we are modifying the properties of the existing object, not reassigning the variable itself.
+treasureChest.gold = 150;
+// treasureChest = { gold: 50 };
 
-treasureChest = {
-  gold: 200,
-}; // This will throw an error because we cannot reassign a new object to a variable declared with const.
+const crewRoster = ["Alok", "Abhinav", "Tasnish"];
+crewRoster.push("vraj");
+crewRoster[0] = "Shubham";
 
-const crewRoster = ['Jack Sparrow', 'Will Turner', 'Elizabeth Swann'];
-crewRoster.push('Gibbs'); // This is allowed because we are modifying the existing array, not reassigning the variable itself.
-
-crewRoster[0] = ['Captain Jack Sparrow']; // This is also allowed because we are modifying the existing array, not reassigning the variable itself.
-
-crewRoster = ['Jack']; // This will throw an error because we cannot reassign a new array to a variable declared with const.
+crewRoster = ["Someone"];
