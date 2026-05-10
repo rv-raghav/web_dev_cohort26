@@ -21,3 +21,6 @@ Topics include:
 👉 https://functions-rv.hashnode.dev/function-declaration-vs-function-expression-in-javascript
 👉 https://call-apply-bind-js-rv.hashnode.dev/the-magic-of-this-call-apply-and-bind-in-javascript
 👉 https://operators-rv.hashnode.dev/javascript-operators-the-basics-you-need-to-know
+👉 https://js-modules-guide.hashnode.dev/javascript-modules-explained-import-export-and-writing-cleaner-code
+👉 https://js-array-flatten.hashnode.dev/flattening-arrays-in-javascript-from-nested-chaos-to-clean-data
+👉 https://template-literals-js-1.hashnode.dev/template-literals-in-javascript-cleaner-strings-and-better-readability
