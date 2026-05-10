@@ -24,3 +24,14 @@ Topics include:
 👉 https://js-modules-guide.hashnode.dev/javascript-modules-explained-import-export-and-writing-cleaner-code
 👉 https://js-array-flatten.hashnode.dev/flattening-arrays-in-javascript-from-nested-chaos-to-clean-data
 👉 https://template-literals-js-1.hashnode.dev/template-literals-in-javascript-cleaner-strings-and-better-readability
+👉 https://nodejs-single-thread-guide.hashnode.dev/callbacks-in-javascript-why-they-exist-and-how-they-work
+👉 https://javascript-new-keyword-constructor.hashnode.dev/understanding-the-new-keyword-in-javascript
+👉 https://js-string-polyfills-interview-questions.hashnode.dev/string-polyfills-and-common-interview-methods-in-javascript
+👉 https://js-string-polyfills-interview-questions.hashnode.dev/spread-vs-rest-operators-in-javascript-explained
+👉 https://js-spread-vs-rest.hashnode.dev/error-handling-in-javascript-try-catch-and-finally-explained
+👉 https://javascript-async-await-guide.hashnode.dev/async-await-in-javascript-writing-cleaner-asynchronous-code
+👉 https://sync-vs-async-javascript-what-is-it.hashnode.dev/synchronous-vs-asynchronous-javascript-explained
+👉 https://chai-code-web-dev.hashnode.dev/javascript-promises-explained-for-beginners
+👉 https://chai-code-web-dev.hashnode.dev/destructuring-in-javascript-cleaner-and-smarter-data-extraction
+👉 https://chai-code-web-dev.hashnode.dev/map-and-set-in-javascript-modern-data-structures-explained
+👉 https://chai-code-web-dev.hashnode.dev/understanding-the-this-keyword-in-javascript
